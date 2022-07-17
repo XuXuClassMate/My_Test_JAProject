@@ -1,4 +1,4 @@
-package Introductory_learn.src.study.variable;
+package src.study.variable;
 /**
  * 变量：
  *      1、成员变量：类中，方法外，和方法同一个层级定义的属性叫成员变量

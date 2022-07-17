@@ -1,4 +1,4 @@
-package Introductory_learn.src.study.variable;
+package src.study.variable;
 
 class DogTest {
 
