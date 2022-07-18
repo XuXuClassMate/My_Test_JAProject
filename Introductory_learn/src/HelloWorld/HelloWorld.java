@@ -1,4 +1,4 @@
-package Introductory_learn.src.HelloWorld;
+package src.HelloWorld;
 
 public class HelloWorld {
     /* 第一个Java程序
