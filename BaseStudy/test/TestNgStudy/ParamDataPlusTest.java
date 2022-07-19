@@ -25,7 +25,14 @@ import org.testng.annotations.Test;
 
 import LoginDataSource.LoginParams;
 
-public class ParamDataTestPlus {
+public class ParamDataPlusTest {
+
+    /**
+     * 通过testng.xml文件导入测试数据
+     * @param Login_name
+     * @param Login_pwd
+     * @param Login_result
+     */
     @Test
     @Parameters({"name","pwd","result"})
     public void LoginTestFuntion1(String Login_name,String Login_pwd,String Login_result){
@@ -34,6 +41,13 @@ public class ParamDataTestPlus {
         Assert.assertEquals(results, Login_result);
     }
 
+    /**
+     * 通过测试数据类提供测试数据
+     * 优点：一个方法增加测试数据来增加测试用例
+     * @param Login_name
+     * @param Login_pwd
+     * @param Login_result
+     */
     @Test(dataProvider = "getUsers",dataProviderClass = LoginParams.class)
     public void LoginTestFuntion2(String Login_name,String Login_pwd,String Login_result){
         ParamData login = new ParamData();

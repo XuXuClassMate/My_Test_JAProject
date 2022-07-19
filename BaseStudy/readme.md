@@ -33,14 +33,14 @@ TestCase_base Demo testng.xml config
 
 #
 
-- [TestCase_plus Demo](./test/TestNgStudy/ParamDataTestPlus.java)
+- [TestCase_plus Demo](./test/TestNgStudy/ParamDataPlusTest.java)
 
 TestCase_plus Demo testng.xml config
 
 ```xml
 <classes>
     <!-- TestNgStudy.ParamDataTes->package name-->
-    <class name="TestNgStudy.ParamDataTestPlus">
+    <class name="TestNgStudy.ParamDataPlusTest">
         <methods>
             <parameter name="name" value="zhangsan"></parameter>
             <parameter name="pwd" value="123456"></parameter>
@@ -51,4 +51,17 @@ TestCase_plus Demo testng.xml config
 </classes>
 ```
 
-- [TestCase_plus Demo Data source](./test/LoginDataSource/LoginParams.java) 
+- [TestCase_plus Demo Data source](./test/LoginDataSource/LoginParams.java)
+
+### 创建测试数据类的方法
+```java
+    @DataProvider
+    public static   Object[][] getUsers() {
+        return new Object[][]{};
+    }
+```
+
+自动执行：
+```shell
+mvn surefire:test
+```
