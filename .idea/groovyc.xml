@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="GroovyCompilerProjectConfiguration">
-    <excludes>
-      <directory url="file:///Library/Java/JavaVirtualMachines/jdk1.8.0_333.jdk" includeSubdirectories="true" />
-    </excludes>
-  </component>
-</project>
