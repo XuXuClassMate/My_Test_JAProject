@@ -20,7 +20,7 @@
 
 package TestNgStudy;
 
-public class ParamDataTest {
+public class ParamData {
     public static boolean isLogin=false;
 
     /**
@@ -47,7 +47,7 @@ public class ParamDataTest {
     }
 
     public static void main(String[] args) {
-        ParamDataTest login=new ParamDataTest();
+        ParamData login=new ParamData();
         login.UserLogin("admin"," ");
     }
 

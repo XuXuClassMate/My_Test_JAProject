@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="8" passed="8" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-07-19T15:21:11 CST" name="XuXu All Test Suite" finished-at="2022-07-19T15:21:11 CST" duration-ms="233">
+    <groups>
+    </groups>
+    <test started-at="2022-07-19T15:21:11 CST" name="BaseStudy/test/TestNgStudy" finished-at="2022-07-19T15:21:11 CST" duration-ms="233">
+      <class name="TestNgStudy.ParamDataTestPlus">
+        <test-method signature="LoginTestFuntion1(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:TestNgStudy.ParamDataTestPlus@2002fc1d]" started-at="2022-07-19T15:21:11 CST" name="LoginTestFuntion1" finished-at="2022-07-19T15:21:11 CST" duration-ms="65" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[zhangsan]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[123456]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[欢迎zhangsan]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginTestFuntion1 -->
+        <test-method signature="LoginTestFuntion2(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:TestNgStudy.ParamDataTestPlus@2002fc1d]" started-at="2022-07-19T15:21:11 CST" name="LoginTestFuntion2" data-provider="getUsers" finished-at="2022-07-19T15:21:11 CST" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[用户名或密码不能为空]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginTestFuntion2 -->
+        <test-method signature="LoginTestFuntion2(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:TestNgStudy.ParamDataTestPlus@2002fc1d]" started-at="2022-07-19T15:21:11 CST" name="LoginTestFuntion2" data-provider="getUsers" finished-at="2022-07-19T15:21:11 CST" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[login]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[用户名或密码不能为空]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginTestFuntion2 -->
+        <test-method signature="LoginTestFuntion2(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:TestNgStudy.ParamDataTestPlus@2002fc1d]" started-at="2022-07-19T15:21:11 CST" name="LoginTestFuntion2" data-provider="getUsers" finished-at="2022-07-19T15:21:11 CST" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[login]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[用户名或密码不能为空]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginTestFuntion2 -->
+        <test-method signature="LoginTestFuntion2(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:TestNgStudy.ParamDataTestPlus@2002fc1d]" started-at="2022-07-19T15:21:11 CST" name="LoginTestFuntion2" data-provider="getUsers" finished-at="2022-07-19T15:21:11 CST" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[用户名或密码不能为空]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginTestFuntion2 -->
+        <test-method signature="LoginTestFuntion2(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:TestNgStudy.ParamDataTestPlus@2002fc1d]" started-at="2022-07-19T15:21:11 CST" name="LoginTestFuntion2" data-provider="getUsers" finished-at="2022-07-19T15:21:11 CST" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[用户名或密码不能为空]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginTestFuntion2 -->
+        <test-method signature="LoginTestFuntion2(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:TestNgStudy.ParamDataTestPlus@2002fc1d]" started-at="2022-07-19T15:21:11 CST" name="LoginTestFuntion2" data-provider="getUsers" finished-at="2022-07-19T15:21:11 CST" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[欢迎管理员]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginTestFuntion2 -->
+        <test-method signature="LoginTestFuntion2(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:TestNgStudy.ParamDataTestPlus@2002fc1d]" started-at="2022-07-19T15:21:11 CST" name="LoginTestFuntion2" data-provider="getUsers" finished-at="2022-07-19T15:21:11 CST" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[zhangsan]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[zhangsan]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[欢迎zhangsan]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginTestFuntion2 -->
+      </class> <!-- TestNgStudy.ParamDataTestPlus -->
+    </test> <!-- BaseStudy/test/TestNgStudy -->
+  </suite> <!-- XuXu All Test Suite -->
+</testng-results>
