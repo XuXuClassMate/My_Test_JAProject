@@ -3,23 +3,16 @@
 <suite name="XuXu All Test Suite">
     <!-- ./BaseStudy/test -> pwd-->
     <test verbose="1" preserve-order="true" name="BaseStudy/test/TestNgStudy">
-        <groups>
-            <dependencies>
-                <group name="group1" depends-on="">
-                    <classes>
-                        <!-- TestNgStudy.ParamDataTes->package name-->
-                        <class name="TestNgStudy.ParamDataPlusTest">
-                            <methods>
-                                <parameter name="name" value="zhangsan"/>
-                                <parameter name="pwd" value="123456"/>
-                                <parameter name="result" value="欢迎zhangsan"/>
-                                <include name="LoginTestFuntion1"></include>
-                                <include name="LoginTestFuntion2"/>
-                            </methods>
-                        </class>
-                    </classes>
-                </group>
-            </dependencies>
-        </groups>
+        <classes>
+            <class name="TestNgStudy.ParamDataPlusTest">
+                <methods>
+                    <parameter name="name" value="zhangsan"/>
+                    <parameter name="pwd" value="123456"/>
+                    <parameter name="result" value="欢迎zhangsan"/>
+                    <include name="LoginTestFuntion1"/>
+                    <include name="LoginTestFuntion2"/>
+                </methods>
+            </class>
+        </classes>
     </test>
 </suite>

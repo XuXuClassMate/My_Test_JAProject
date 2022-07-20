@@ -29,12 +29,6 @@
             <artifactId>okhttp</artifactId>
             <version>4.10.0</version>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>5.8.1</version>
-            <scope>compile</scope>
-        </dependency>
         <!-- 必须使用junit-jupiter-api构件，测试注解、断言都源于此构件-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -47,12 +41,6 @@
             <artifactId>testng</artifactId>
             <version>7.6.0</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.8.1</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
     <properties>

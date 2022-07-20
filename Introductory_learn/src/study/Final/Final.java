@@ -1,5 +1,5 @@
-package Introductory_learn.src.study.Final;
-
+package study.Final;
+import src.study.variable.Dog;
 public class Final {
     public static final int i =10;
     public static int x = 10;
