@@ -1,4 +1,4 @@
-package src.study.variable;
+package study.variable;
 /**
  * 变量：
  *      1、成员变量：类中，方法外，和方法同一个层级定义的属性叫成员变量
@@ -41,6 +41,9 @@ public class Dog {
     }
 
 
+    public void eat() {
+    }
 
-
+    public void run() {
+    }
 }

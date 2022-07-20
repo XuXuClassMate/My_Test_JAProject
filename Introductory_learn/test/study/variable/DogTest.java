@@ -1,4 +1,4 @@
-package src.study.variable;
+package study.variable;
 
 class DogTest {
 
