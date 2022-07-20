@@ -65,3 +65,7 @@ TestCase_plus Demo testng.xml config
 ```shell
 mvn surefire:test
 ```
+
+### result：
+
+![result massage](./source/result.png)
