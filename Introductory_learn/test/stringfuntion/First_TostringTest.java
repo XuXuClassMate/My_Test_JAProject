@@ -1,4 +1,4 @@
-package Introductory_learn.test.stringfuntion;
+package stringfuntion;
 
 
 import Introductory_learn.src.study.stringfuntion.First_Tostring;

@@ -1,4 +1,4 @@
-package src.main.java.org.xuxuclassmate;
+package main.java.org.xuxuclassmate;
 
 public class Main {
     public static void main(String[] args) {

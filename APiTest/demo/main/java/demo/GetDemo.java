@@ -18,7 +18,7 @@
  *
  */
 
-package src.main.java.demo;
+package main.java.demo;
 import java.io.IOException;
 import java.util.Objects;
 

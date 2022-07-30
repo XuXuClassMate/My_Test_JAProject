@@ -19,11 +19,12 @@
  */
 
 package study;
+import org.junit.jupiter.api.Test;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import org.junit.Test;
 
 
 public class ReaderDemoTest {
