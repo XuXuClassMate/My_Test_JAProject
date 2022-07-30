@@ -1,4 +1,4 @@
-/*
+package com.work.weixin;/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -18,21 +18,25 @@
  *
  */
 
-package test;
-
 import io.restassured.RestAssured;
-import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.Matchers.equalTo;
-
-public class TestGetToken {
-    @Test
-    void GetToken(){
-        RestAssured.given().log().all()
-                .queryParam("corpid",WeworkConfig.getInstance().corpid)
-                .queryParam("corpsecret",WeworkConfig.getInstance().corpsecret)
+public class Wuwork {
+    private static String token;
+    private static String getWuworkToken() {
+        return RestAssured.given().log().all()
+                .queryParam("corpid", WeworkConfig.getInstance().corpid)
+                .queryParam("corpsecret", WeworkConfig.getInstance().corpsecret)
                 .when().get("https://qyapi.weixin.qq.com/cgi-bin/gettoken")
-                .then().log().all().statusCode(200).body("errcode",equalTo(0));
+                .then().log().all().statusCode(200)
+                .extract().path("access_token");
+    }
 
+
+    public static String getToken(){
+        if (token==null){
+            token=getWuworkToken();
+
+        }
+        return token;
     }
 }

@@ -1,4 +1,4 @@
-/*
+package com.work.weixin;/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -18,18 +18,21 @@
  *
  */
 
-package test;
-
 public class WeworkConfig {
     public String agentId = "";
-    public String corpid="ww2ef8a1f13d444dfd";
-    public String corpsecret="_UJ1IWUK0FQhDWlccOow_syqj2qvU1H6whTfnCwkuWQ";
+    public String corpid = "ww2ef8a1f13d444dfd";
+    public String corpsecret = "_UJ1IWUK0FQhDWlccOow_syqj2qvU1H6whTfnCwkuWQ";
 
     private static WeworkConfig weworkConfig;
-    static WeworkConfig getInstance(){
-        if (weworkConfig==null){
-            weworkConfig=new WeworkConfig();
+
+    static WeworkConfig getInstance() {
+        if (weworkConfig == null) {
+            weworkConfig = new WeworkConfig();
         }
         return weworkConfig;
+    }
+
+    public static void load(String path) {
+        //todo: read from yaml or json
     }
 }
