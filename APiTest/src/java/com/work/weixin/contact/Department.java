@@ -18,7 +18,7 @@
  *
  */
 
-package com.work.weixin.contaact;
+package com.work.weixin.contact;
 import com.work.weixin.Wuwork;
 import io.restassured.response.Response;
 import static io.restassured.RestAssured.given;

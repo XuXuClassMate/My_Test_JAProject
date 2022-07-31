@@ -18,10 +18,7 @@
  *
  */
 
-package com.work.weixin.contaact;
+package com.work.weixin.contact;
 
-import static io.restassured.RestAssured.given;
-
-public class Mumber {
-
+public class Tag {
 }

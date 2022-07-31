@@ -18,23 +18,10 @@
  *
  */
 
-package com.work.weixin;
+package com.work.weixin.contact;
 
-public class WeworkConfig {
-    public static String corpid="ww2ef8a1f13d444dfd";
-    public static String corpsecret="0FzKHtapsva-Uyk8WCURTXE3sXhq6zGsFCg6Yx0BGlU";
+import static io.restassured.RestAssured.given;
 
+public class Mumber {
 
-    private static WeworkConfig weworkConfig;
-
-    static WeworkConfig getInstance() {
-        if (weworkConfig == null) {
-            weworkConfig = new WeworkConfig();
-        }
-        return weworkConfig;
-    }
-
-    public static void load(String path) {
-        //todo: read from yaml or json
-    }
 }
