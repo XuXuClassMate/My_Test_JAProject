@@ -19,30 +19,35 @@
  */
 
 package com.work.weixin.contact;
+import com.jayway.jsonpath.JsonPath;
 import com.work.weixin.Wuwork;
 import io.restassured.response.Response;
+
+import java.io.File;
+import java.io.IOException;
+
 import static io.restassured.RestAssured.given;
 
+
 public class Department {
-    public Response list(String id){
+    public Response list(String id) {
         return given().log().all()
                 .param("access_token", Wuwork.getToken())
-                .param("id",id)
-            .when().get("https://qyapi.weixin.qq.com/cgi-bin/department/list")
-            .then().log().all().statusCode(200)
-            .extract().response();
+                .param("id", id)
+                .when().get("https://qyapi.weixin.qq.com/cgi-bin/department/list")
+                .then().log().all().statusCode(200)
+                .extract().response();
     }
 
-    public Response create(){
+    public Response create(String name, String name_en, int id) {
+        String createbody = JsonPath.parse(this.getClass().getResourceAsStream("/data/create.json"))
+                    .set("$.name", name)
+                    .set("$.name_en", name_en)
+                    .set("$.id", id).jsonString();
+
         return given().log().all()
                 .queryParam("access_token", Wuwork.getToken())
-                .body("{\n" +
-                        "   \"name\": \"接口测试组\",\n" +
-                        "   \"name_en\": \"ApiTestDepartment\",\n" +
-                        "   \"parentid\": 1,\n" +
-                        "   \"order\": 1,\n" +
-                        "   \"id\": 2\n" +
-                        "}")
+                .body(createbody)
                 .when().post("https://qyapi.weixin.qq.com/cgi-bin/department/create")
                 .then().log().all().statusCode(200)
                 .extract().response();

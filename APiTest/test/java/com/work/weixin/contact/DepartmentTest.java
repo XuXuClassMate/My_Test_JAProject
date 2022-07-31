@@ -38,12 +38,16 @@ class DepartmentTest {
 
     @Test
     void list() {
-        department.list("").then().statusCode(200).body("department.name[0]", equalTo("字节跳不动"));
-        department.list("1").then().statusCode(200).body("department.parentid[0]", equalTo(0));
+        department.list("").then().statusCode(200).
+                body("errcode",equalTo(0)).
+                body("department.name[0]", equalTo("字节跳不动"));
+        department.list("1").then().statusCode(200)
+                .body("errcode",equalTo(0))
+                .body("department.parentid[1]",equalTo(1));
     }
 
     @Test
     void create() {
-        department.create();
+        //department.create("接口测试","ApiTest",2).then().body("errcode",equalTo(60009));
     }
 }
