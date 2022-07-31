@@ -22,6 +22,7 @@ package com.work.weixin.contact;
 
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -35,7 +36,7 @@ class DepartmentTest {
             department = new Department();
         }
     }
-
+    @Order(1)
     @Test
     void list() {
         department.list("").then().statusCode(200).
@@ -45,9 +46,25 @@ class DepartmentTest {
                 .body("errcode",equalTo(0))
                 .body("department.parentid[1]",equalTo(1));
     }
-
+    @Order(2)
     @Test
     void create() {
         //department.create("接口测试","ApiTest",2).then().body("errcode",equalTo(60009));
+    }
+    @Order(4)
+    @Test
+    void delete() {
+        //department.create("接口测试1","ApiTest1",4);
+        int id = department.list("").path("department.find{it.name=='接口测试1'}.id");
+        department.delete(id).
+                then().body("errcode",equalTo(0));
+    }
+    @Order(3)
+    @Test
+    void update() {
+        //department.create("接口测试1","ApiTest1",4);
+        int id = department.list("").path("department.find{it.name=='接口测试1'}.id");
+        department.update("接口测试4","ApiTest4",id).
+                then().body("errcode",equalTo(60009));
     }
 }

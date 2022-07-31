@@ -52,4 +52,25 @@ public class Department {
                 .then().log().all().statusCode(200)
                 .extract().response();
     }
+
+    public Response delete(int id){
+        return given().log().all().queryParam("access_token", Wuwork.getToken())
+                .queryParam("id",id).when()
+                .get("https://qyapi.weixin.qq.com/cgi-bin/department/delete")
+                .then().log().all().statusCode(200).extract().response();
+    }
+
+    public Response update(String name, String name_en, int id){
+        String createbody = JsonPath.parse(this.getClass().getResourceAsStream("/data/update.json"))
+                .set("$.name", name)
+                .set("$.name_en", name_en)
+                .set("$.id", id).jsonString();
+
+        return given().log().all()
+                .queryParam("access_token", Wuwork.getToken())
+                .body(createbody)
+                .when().post("https://qyapi.weixin.qq.com/cgi-bin/department/update")
+                .then().log().all().statusCode(200)
+                .extract().response();
+    }
 }
