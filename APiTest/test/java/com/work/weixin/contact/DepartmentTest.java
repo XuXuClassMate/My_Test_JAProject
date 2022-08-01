@@ -51,7 +51,7 @@ class DepartmentTest {
     @Order(2)
     @Test
     void create() {
-        //department.create("接口测试","ApiTest",2).then().body("errcode",equalTo(60009));
+       // department.create("接口测试","ApiTest",2).then().body("errcode",equalTo(60009));
     }
 
     @Order(4)
