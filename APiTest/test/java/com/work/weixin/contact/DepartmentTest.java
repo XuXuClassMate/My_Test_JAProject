@@ -25,6 +25,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+
 import static org.hamcrest.Matchers.equalTo;
 
 class DepartmentTest {
@@ -40,18 +42,14 @@ class DepartmentTest {
     @Order(1)
     @Test
     void list() {
-        department.list("").then().statusCode(200).
-                body("errcode", equalTo(0)).
-                body("department.name[0]", equalTo("字节跳不动"));
-        department.list("1").then().statusCode(200)
-                .body("errcode", equalTo(0))
-                .body("department.parentid[1]", equalTo(1));
+        department.list("").then().statusCode(200).body("errcode", equalTo(0)).body("department.name[0]", equalTo("字节跳不动"));
+        department.list("1").then().statusCode(200).body("errcode", equalTo(0)).body("department.parentid[1]", equalTo(1));
     }
 
     @Order(2)
     @Test
     void create() {
-       // department.create("接口测试","ApiTest",2).then().body("errcode",equalTo(60009));
+        // department.create("接口测试","ApiTest",2).then().body("errcode",equalTo(60009));
     }
 
     @Order(4)
@@ -59,8 +57,7 @@ class DepartmentTest {
     void delete() {
         //department.create("接口测试1","ApiTest1",4);
         int id = department.list("").path("department.find{it.name=='接口测试1'}.id");
-        department.delete(id).
-                then().body("errcode", equalTo(0));
+        department.delete(id).then().body("errcode", equalTo(0));
     }
 
     @Order(3)
@@ -68,7 +65,18 @@ class DepartmentTest {
     void update() {
         //department.create("接口测试1","ApiTest1",4);
         int id = department.list("").path("department.find{it.name=='接口测试1'}.id");
-        department.update("接口测试4", "ApiTest4", id).
-                then().body("errcode", equalTo(60009));
+        department.update("接口测试4", "ApiTest4", id).then().body("errcode", equalTo(60009));
+    }
+
+    @Test
+    void createByMap() {
+        HashMap<String, Object> map = new HashMap<String, Object>() {
+            {
+                put("name", "接口测试Map");
+                put("name_en", "ApiTestMap");
+                put("id", 5);
+            }
+        };
+        department.CreateByMap(map).then().body("errcode", equalTo(0));
     }
 }

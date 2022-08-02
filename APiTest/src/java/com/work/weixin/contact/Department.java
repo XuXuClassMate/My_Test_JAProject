@@ -19,14 +19,15 @@
  */
 
 package com.work.weixin.contact;
+
+import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
-import com.work.weixin.Wuwork;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import static io.restassured.RestAssured.given;
+
+import java.util.HashMap;
 
 
-public class Department extends Contact{
+public class Department extends Contact {
     public Response list(String id) {
         reset();
         Response response = requestSpecification
@@ -37,28 +38,41 @@ public class Department extends Contact{
         return response;
     }
 
+
+    public Response CreateByMap(HashMap<String, Object> map) {
+        reset();
+        DocumentContext documentContext = JsonPath.parse(this.getClass().getResourceAsStream("/data/create.json"));
+        map.entrySet().forEach(entry->{
+            documentContext.set(entry.getKey(),entry.getValue());
+        });
+        return requestSpecification
+                .body(documentContext.jsonString())
+                .when().post("https://qyapi.weixin.qq.com/cgi-bin/department/create")
+                .then().extract().response();
+
+    }
+
     public Response create(String name, String name_en, int id) {
         reset();
         String createbody = JsonPath.parse(this.getClass().getResourceAsStream("/data/create.json"))
-                    .set("$.name", name)
-                    .set("$.name_en", name_en)
-                    .set("$.id", id).jsonString();
-
+                .set("$.name", name)
+                .set("$.name_en", name_en)
+                .set("$.id", id).jsonString();
         return requestSpecification
                 .body(createbody)
                 .when().post("https://qyapi.weixin.qq.com/cgi-bin/department/create")
                 .then().extract().response();
     }
 
-    public Response delete(int id){
+    public Response delete(int id) {
         reset();
         return requestSpecification
-                .queryParam("id",id).when()
+                .queryParam("id", id).when()
                 .get("https://qyapi.weixin.qq.com/cgi-bin/department/delete")
                 .then().extract().response();
     }
 
-    public Response update(String name, String name_en, int id){
+    public Response update(String name, String name_en, int id) {
         reset();
         String createbody = JsonPath.parse(this.getClass().getResourceAsStream("/data/update.json"))
                 .set("$.name", name)
