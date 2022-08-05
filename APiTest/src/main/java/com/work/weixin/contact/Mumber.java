@@ -20,8 +20,16 @@
 
 package com.work.weixin.contact;
 
-import static io.restassured.RestAssured.given;
+import io.restassured.response.Response;
 
-public class Mumber {
+import java.util.HashMap;
 
+
+public class Mumber extends Contact {
+    public Response create(HashMap<String, Object> map) {
+        String body = template("/Users/xuxudemac/Desktop/my/Test_Coding_Project/Java/My_Test_JAProject/APiTest/src/main/resources/data", map);
+        reset();
+        return requestSpecification.body(body).post("https://qyapi.weixin.qq.com/cgi-bin/user/create")
+                .then().log().all().extract().response();
+    }
 }
