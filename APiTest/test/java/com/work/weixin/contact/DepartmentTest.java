@@ -79,4 +79,9 @@ class DepartmentTest {
         };
         department.CreateByMap(map).then().body("errcode", equalTo(0));
     }
+
+    @Test
+    void deleteAll() {
+        department.deleteAll();
+    }
 }

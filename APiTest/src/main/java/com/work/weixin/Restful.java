@@ -53,4 +53,3 @@ public class Restful {
         return documentContext.jsonString();
     };
 }
- 

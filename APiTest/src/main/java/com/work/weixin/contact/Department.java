@@ -25,6 +25,7 @@ import com.jayway.jsonpath.JsonPath;
 import io.restassured.response.Response;
 
 import java.util.HashMap;
+import java.util.List;
 
 
 public class Department extends Contact {
@@ -42,8 +43,8 @@ public class Department extends Contact {
     public Response CreateByMap(HashMap<String, Object> map) {
         reset();
         DocumentContext documentContext = JsonPath.parse(this.getClass().getResourceAsStream("/data/create.json"));
-        map.entrySet().forEach(entry->{
-            documentContext.set(entry.getKey(),entry.getValue());
+        map.entrySet().forEach(entry -> {
+            documentContext.set(entry.getKey(), entry.getValue());
         });
         return requestSpecification
                 .body(documentContext.jsonString())
@@ -84,4 +85,14 @@ public class Department extends Contact {
                 .when().post("https://qyapi.weixin.qq.com/cgi-bin/department/update")
                 .then().extract().response();
     }
+
+    public Response deleteAll() {
+        reset();
+        List<Integer> idlist = list("").then().log().all().extract().path("department.id");
+
+        System.out.println(idlist);
+        idlist.forEach(id->delete(id));
+        return null;
+    }
+
 }
