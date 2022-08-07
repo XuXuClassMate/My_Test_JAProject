@@ -23,9 +23,10 @@ package com.work.weixin.contact;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import io.restassured.response.Response;
-
 import java.util.HashMap;
 import java.util.List;
+import static io.restassured.RestAssured.responseSpecification;
+import static org.hamcrest.Matchers.lessThan;
 
 
 public class Department extends Contact {
@@ -34,7 +35,7 @@ public class Department extends Contact {
         Response response = requestSpecification
                 .param("id", id)
                 .when().get("https://qyapi.weixin.qq.com/cgi-bin/department/list")
-                .then().extract().response();
+                .then().time(lessThan(1000L)).extract().response();
         reset();
         return response;
     }
@@ -88,7 +89,10 @@ public class Department extends Contact {
 
     public Response deleteAll() {
         reset();
-        List<Integer> idlist = list("").then().log().all().extract().path("department.id");
+        List<Integer> idlist = list("")
+                .then().log().all()
+                .spec(responseSpecification)
+                .extract().path("department.id");
 
         System.out.println(idlist);
         idlist.forEach(id->delete(id));
