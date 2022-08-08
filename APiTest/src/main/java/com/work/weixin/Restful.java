@@ -22,6 +22,7 @@ package com.work.weixin;
 
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
+import io.restassured.mapper.ObjectMapper;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -51,5 +52,11 @@ public class Restful {
 
         });
         return documentContext.jsonString();
-    };
+    }
+
+    public static void load(String[] args) {
+        //todo:read from yaml or json
+        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+
+    }
 }
