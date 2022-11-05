@@ -18,7 +18,16 @@
  *
  */
 
-package com.work.weixin.contact;
+package login;
 
-public class Tag {
+import BaseFunction.ApiBaseFun;
+
+import java.io.IOException;
+
+public class login {
+    public String login(String url) throws IOException {
+        ApiBaseFun apitest = new ApiBaseFun();
+        return apitest.Get(url);
+    }
 }
+

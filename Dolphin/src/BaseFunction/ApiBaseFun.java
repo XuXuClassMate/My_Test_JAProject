@@ -18,18 +18,25 @@
  *
  */
 
-package com.work.weixin.contact;
+package BaseFunction;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import java.io.IOException;
 
-import io.restassured.response.Response;
+public class ApiBaseFun {
+    final OkHttpClient client = new OkHttpClient();
 
-import java.util.HashMap;
+    public String Get(String url) throws IOException {
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
 
-
-public class Mumber extends Contact {
-    public Response create(HashMap<String, Object> map) {
-        String body = template("/Users/xuxudemac/Desktop/my/Test_Coding_Project/Java/My_Test_JAProject/APiTest/src/main/resources/data", map);
-        reset();
-        return requestSpecification.body(body).post("https://qyapi.weixin.qq.com/cgi-bin/user/create")
-                .then().log().all().extract().response();
+        try (Response response = client.newCall(request).execute()) {
+            return response.body().string();
+        }
     }
+
 }
+
+

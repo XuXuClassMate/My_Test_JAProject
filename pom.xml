@@ -12,11 +12,6 @@
 <!--        <module>APiTest</module>-->
 <!--    </modules>-->
     <dependencies>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.13</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
@@ -27,7 +22,7 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>5.1.1</version>
+            <version>5.2.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path -->
         <dependency>
@@ -36,16 +31,25 @@
             <version>2.7.0</version>
         </dependency>
         <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.19.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.6.0</version>
-            <scope>test</scope>
+            <version>7.6.1</version>
         </dependency>
         <!-- 必须使用junit-jupiter-api构件，测试注解、断言都源于此构件-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.8.2</version>
+            <version>5.9.0</version>
         </dependency>
         <dependency>
             <groupId>org.xuxuclassmate</groupId>
@@ -63,18 +67,18 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
-    <build>
-         <plugins>
-             <plugin>
-                 <groupId>org.apache.maven.plugins</groupId>
-                 <artifactId>maven-surefire-plugin</artifactId>
-                 <version>3.0.0-M7</version>
-                 <configuration>
-                     <suiteXmlFiles>
-                         <suiteXmlFile>testng.xml</suiteXmlFile>
-                     </suiteXmlFiles>
-                 </configuration>
-             </plugin>
-         </plugins>
-    </build>
+<!--    <build>-->
+<!--         <plugins>-->
+<!--             <plugin>-->
+<!--                 <groupId>org.apache.maven.plugins</groupId>-->
+<!--                 <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                 <version>3.0.0-M7</version>-->
+<!--                 <configuration>-->
+<!--                     <suiteXmlFiles>-->
+<!--                         <suiteXmlFile>testng.xml</suiteXmlFile>-->
+<!--                     </suiteXmlFiles>-->
+<!--                 </configuration>-->
+<!--             </plugin>-->
+<!--         </plugins>-->
+<!--    </build>-->
 </project>
