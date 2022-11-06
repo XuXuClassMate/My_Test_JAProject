@@ -1,8 +1,9 @@
-package Introductory_learn.test.Interface;
-import Introductory_learn.src.study.Interface.Doctor;
-import Introductory_learn.src.study.Interface.Teacher;
-import Introductory_learn.src.study.Interface.Tester;
+package Interface;
+
 import Introductory_learn.src.study.Interface.Worker;
+import study.Interface.Doctor;
+import study.Interface.Teacher;
+import study.Interface.Tester;
 
 public class Testfile {
     public void ShowWork(Worker worker){

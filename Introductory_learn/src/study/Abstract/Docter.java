@@ -1,4 +1,4 @@
-package Introductory_learn.src.study.Abstract;
+package study.Abstract;
 
 public class Docter extends Worker{
     @Override

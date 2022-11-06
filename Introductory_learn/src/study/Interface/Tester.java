@@ -1,11 +1,11 @@
-package Introductory_learn.src.study.Interface;
+package study.Interface;
 /*
 实现类：测试
 interface：使用interface定义接口
 implements：使用implements实现接口
  */
 
-public class Tester implements Worker{
+public class Tester implements Introductory_learn.src.study.Interface.Worker {
     @Override
     public void work() {
         System.out.println("卷bug~");

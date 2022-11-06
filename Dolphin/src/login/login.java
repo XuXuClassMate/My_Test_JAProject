@@ -21,13 +21,12 @@
 package login;
 
 import BaseFunction.ApiBaseFun;
-
 import java.io.IOException;
 
 public class login {
-    public String login(String url) throws IOException {
+    public String login2(String url,String userName,String Password) throws IOException {
         ApiBaseFun apitest = new ApiBaseFun();
-        return apitest.Get(url);
+        String form ="userName="+ userName +"&userPassword="+ Password;
+        return apitest.Post_form(url,form);
     }
 }
-

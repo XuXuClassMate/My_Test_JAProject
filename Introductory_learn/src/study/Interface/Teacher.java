@@ -1,11 +1,12 @@
-package Introductory_learn.src.study.Interface;
+package study.Interface;
+
 
 /*
 implements:实现的意思
     //interface：使用interface定义接口
     //implements：使用implements实现接口
  */
-public class Teacher implements Worker{
+public class Teacher implements Introductory_learn.src.study.Interface.Worker {
 
     @Override
     public void work() {
@@ -13,6 +14,6 @@ public class Teacher implements Worker{
     }
 
     public static void main(String[] args) {
-        System.out.println(Worker.title);
+        System.out.println(Introductory_learn.src.study.Interface.Worker.title);
     }
 }

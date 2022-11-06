@@ -1,4 +1,4 @@
-package Introductory_learn.src.study.Abstract;
+package study.Abstract;
 //abstract抽象类
 //抽象方法里面只能定义抽象方法，不能实现，让实现类个性化实现
 

@@ -1,6 +1,8 @@
-package Introductory_learn.src.study.Abstract;
+package study.Abstract;
 
-public class Tester extends Worker{
+
+
+public class Tester extends Worker  {
 
     @Override
     public void work(Worker worker) {

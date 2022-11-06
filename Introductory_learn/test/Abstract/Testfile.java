@@ -1,9 +1,9 @@
-package Introductory_learn.test.Abstract;
+package Abstract;
 
-import Introductory_learn.src.study.Abstract.Docter;
-import Introductory_learn.src.study.Abstract.Teacher;
-import Introductory_learn.src.study.Abstract.Tester;
-import Introductory_learn.src.study.Abstract.Worker;
+import study.Abstract.Docter;
+import study.Abstract.Teacher;
+import study.Abstract.Tester;
+import study.Abstract.Worker;
 
 public  class Testfile {
     public void ShowDaies(Worker worker){
