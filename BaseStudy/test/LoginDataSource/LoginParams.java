@@ -32,8 +32,8 @@ public class LoginParams {
     public Object[][] getUsers(){
         return new Object[][]{
                 {"","","用户名或密码不能为空"},
-                {"login","","用户名或密码不能为空"},
-                {"","login","用户名或密码不能为空"},
+                {"Project","","用户名或密码不能为空"},
+                {"", "Project","用户名或密码不能为空"},
                 {"","admin","用户名或密码不能为空"},
                 {"admin","","用户名或密码不能为空"},
                 {"admin","admin","欢迎管理员"},

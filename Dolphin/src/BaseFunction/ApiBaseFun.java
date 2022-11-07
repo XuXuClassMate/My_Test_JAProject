@@ -19,48 +19,74 @@
  */
 
 package BaseFunction;
+import groovy.util.logging.Slf4j;
 import okhttp3.*;
 import java.io.IOException;
-
+@Slf4j
 public class ApiBaseFun {
     final OkHttpClient client = new OkHttpClient();
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     public static final MediaType From = MediaType.get("application/x-www-form-urlencoded");
-    public String Get(String url) throws IOException {
+    public static String SessionId = null;
+    public static String Base_Url = null;
+    /*
+    Base Demo:http://www.xuxuclassmate.xyz:12345/dolphinscheduler
+     */
+    public String login(String Base_url, String userName, String Password) throws IOException {
+        //login is gettoken;
+        Base_Url =Base_url;
+        String path = "/login";
+        String form = "userName=" + userName + "&userPassword=" + Password;
+        RequestBody form1 = RequestBody.create(form, From);
         Request request = new Request.Builder()
-                .url(url)
-                .build();
-
-        try (Response response = client.newCall(request).execute()) {
-            return response.body().string();
-        }
-    }
-//    header
-//    Connection:keep-alive
-//    Content-Type:application/json;charset=UTF-8
-//    Cookie:sessionId={{session_id}}; JSESSIONID={{JSESSIONID}}; language=zh_CN
-    public String Post_json(String url,String json) throws IOException {
-        RequestBody body = RequestBody.create(json, JSON);
-
-        Request request = new Request.Builder()
-                .url(url).addHeader("Connection","keep-alive")
-                .addHeader("Content-Type","application/json;charset=UTF-8").post(body)
-                .build();
-
-        try (Response response = client.newCall(request).execute()) {
-            return response.body().string();
-        }
-    }
-    public String Post_form(String url,String form) throws IOException {
-        RequestBody form1 = RequestBody.create(form,From);
-        Request request = new Request.Builder()
-                .url(url).addHeader("Connection","keep-alive")
-                .addHeader("Accept"," application/json, text/plain, */*")
+                .url(Base_Url+path).addHeader("Connection", "keep-alive")
+                .addHeader("Accept", " application/json, text/plain, */*")
+                .addHeader("language","zh_CN")
                 .post(form1)
                 .build();
+        Response result =client.newCall(request).execute();
+        String message = result.body().string();
+        return message;
+    }
+
+    public Response Get(String path) throws IOException {
+        Request request = new Request.Builder()
+                .url(Base_Url+path)
+                .addHeader("Connection", "keep-alive")
+                .addHeader("Content-Type", "application/json;charset=UTF-8")
+                .addHeader("sessionId",SessionId)
+                .addHeader("language","zh_CN")
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            return response;
+        }
+    }
+    public Response Post_json(String path, String json) throws IOException {
+        RequestBody body = RequestBody.create(json, JSON);
+        Request request = new Request.Builder()
+                .url(Base_Url+path)
+                .addHeader("Connection", "keep-alive")
+                .addHeader("Content-Type", "application/json;charset=UTF-8")
+                .addHeader("sessionId",SessionId)
+                .addHeader("language","zh_CN")
+                .post(body)
+                .build();
 
         try (Response response = client.newCall(request).execute()) {
-            return response.body().string();
+            return response;
+        }
+    }
+    public Response Post_form(String path, String form) throws IOException {
+        RequestBody form1 = RequestBody.create(form, From);
+        Request request = new Request.Builder()
+                .url(Base_Url+path).addHeader("Connection", "keep-alive")
+                .addHeader("Accept", " application/json, text/plain, */*")
+                .addHeader("sessionId",SessionId)
+                .addHeader("language","zh_CN")
+                .post(form1)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            return response;
         }
     }
 }
