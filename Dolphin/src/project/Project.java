@@ -18,7 +18,7 @@
  *
  */
 
-package Project;
+package project;
 
 import BaseFunction.ApiBaseFun;
 import groovy.util.logging.Slf4j;
