@@ -18,7 +18,7 @@
  *
  */
 
-package BaseFunction;
+package baseFunction;
 import groovy.util.logging.Slf4j;
 import okhttp3.*;
 import java.io.IOException;
