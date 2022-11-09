@@ -20,27 +20,31 @@
 
 package project;
 
-import BaseFunction.ApiBaseFun;
+import basefunction.apibasefun;
 import groovy.util.logging.Slf4j;
 import okhttp3.Response;
 
 import java.io.IOException;
 @Slf4j
-public class Project extends ApiBaseFun {
-    ApiBaseFun api=new ApiBaseFun();
-    public String CreateProject(String projectName, String userName,String description) throws IOException {
-        String path = "/project";
-        String form="projectName=" + projectName + "&userName=" + userName+"&description="+description;
-        Response result=api.Post_form(path,form);
-        if (result.code() == 201) {
-            return result.body().string();
-        }
-        return result.body().string();
-    }
+public class project extends apibasefun {
+    apibasefun api=new apibasefun();
+//    public String CreateProject(String projectName, String userName,String description) throws IOException {
+//        String path = "/projects";
+//        String form="projectName=" + projectName + "&userName=" + userName+"&description="+description;
+//        Response result=api.Post_form(path,form);
+//        System.out.println(result);
+//        if (result.code() == 201) {
+//            return result.body().string();
+//        }
+//        return result.body().string();
+//    }
+
+
+
     public String UpdateProject(String projectcode, String projectName, String userName,String description) throws IOException {
-        String path = "/projects/"+ projectcode;
+        String path = "/projects"+ projectcode;
         String form="projectName=" + projectName + "&userName=" + userName+"&description="+description;
-        Response result=api.Post_form(path,form);
+        Response result=api.postRequest(,form);
         if (result.code() == 201) {
             return result.body().string();
         }
