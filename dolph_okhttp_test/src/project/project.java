@@ -61,4 +61,7 @@ public class project extends apibasefun {
         return result.body().string();
     }
 
+    public String CreateProject(String xuXuTest, String admin, String s) {
+        return xuXuTest+admin+s;
+    }
 }
