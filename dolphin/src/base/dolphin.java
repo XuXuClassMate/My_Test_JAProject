@@ -25,21 +25,34 @@ import io.restassured.RestAssured;
 import static org.hamcrest.Matchers.equalTo;
 
 public class dolphin {
-    public String logIn(){
-        return RestAssured.given().log().all().
+    private static String session;
+    public static String logIn(){
+         session = RestAssured.given().log().all().
                 queryParam("userName",dolphinConfig.getInstance().userName)
                 .queryParam("userPassword",dolphinConfig.getInstance().passWord)
                 .post(dolphinConfig.getInstance().baseUrl+"/login")
-                .then().log().all().statusCode(200).body("code",  equalTo(0)).extract().path("sessionId");
+                .then().log().all().statusCode(200)
+                .body("code",  equalTo(0)).extract().path("data.sessionId");
+
+        return session;
 
     }
     public String logIn(String baseUrl,String userName,String passWord){
-        return RestAssured.given().log().all().
+        session = RestAssured.given().log().all().
                 queryParam("userName",userName)
                 .queryParam("userPassword",passWord)
                 .post(baseUrl+"/login")
-                .then().log().all().statusCode(200).body("code",  equalTo(0)).extract().path("sessionId");
+                .then().log().all().statusCode(200)
+                .body("code",  equalTo(0)).extract().path("data.sessionId");
 
+        return session;
+
+    }
+    public static String session(){
+        if (session == null){
+            session = logIn();
+        }
+        return session;
     }
 
 }

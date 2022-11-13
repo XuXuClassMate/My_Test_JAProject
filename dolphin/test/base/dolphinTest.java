@@ -16,7 +16,7 @@ class dolphinTest {
     @Test
     void logIn() {
         dolphin dolphin=new dolphin();
-        String sessionId = dolphin.logIn();
+        String sessionId =dolphin.logIn();
         System.out.println("sessionId : " + sessionId);
         assertThat(sessionId,not(equalTo(null)));
     }
