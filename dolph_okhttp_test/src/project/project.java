@@ -44,7 +44,7 @@ public class project extends apibasefun {
     public String UpdateProject(String projectcode, String projectName, String userName,String description) throws IOException {
         String path = "/projects"+ projectcode;
         String form="projectName=" + projectName + "&userName=" + userName+"&description="+description;
-        Response result=api.postRequest(,form);
+        Response result=api.Post_form(path,form);
         if (result.code() == 201) {
             return result.body().string();
         }
