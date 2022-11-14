@@ -11,5 +11,6 @@ class projectTest {
     void search(){
         project project=new project();
         project.search("123").body();
+        project.search(null,null,"123");
     }
 }

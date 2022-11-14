@@ -28,9 +28,10 @@ import static io.restassured.RestAssured.given;
 
 public class project {
     public Response search(Integer pageSize, Integer pageNo, String searchName){
-        if (pageSize == null){
+        if (pageSize ==null || pageSize >10){
             pageSize =10;
-        } else if (pageNo ==null) {
+        }
+        if (pageNo ==null || pageNo >1) {
             pageNo =1;
         }
         return given().param("pageSize",pageSize)
