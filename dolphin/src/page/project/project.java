@@ -23,15 +23,38 @@ package page.project;
 import base.dolphin;
 import base.dolphinConfig;
 import io.restassured.response.Response;
+import io.restassured.response.ValidatableResponse;
+
 import static io.restassured.RestAssured.given;
 
 
 public class project {
+    public Response create(String projectName,String description){
+        return given()
+                .log().all()
+                .header("sessionId", dolphin.session())
+                .header("Accept","application/json, text/plain, */*")
+                .header("language","zh_CN")
+                .param("projectName",projectName)
+                .param("description",description)
+                .param("userName",dolphinConfig.getInstance().userName)
+                .when().post(dolphinConfig.getInstance().baseUrl+"/projects")
+                .then().log().all().statusCode(201).extract().response();
+    }
+    public Response deleteCode(String projectCode){
+        return given().log().all()
+                .header("sessionId", dolphin.session())
+                .header("Accept","application/json, text/plain, */*")
+                .header("language","zh_CN")
+                .when().delete(dolphinConfig.getInstance().baseUrl+"/projects/"+ projectCode)
+                .then().log().all().statusCode(201).extract().response();
+    }
+
     public Response search(Integer pageSize, Integer pageNo, String searchName){
-        if (pageSize ==null || pageSize >10){
+        if (pageSize ==null | pageSize >10){
             pageSize =10;
         }
-        if (pageNo ==null || pageNo >1) {
+        if (pageNo ==null | pageNo >1) {
             pageNo =1;
         }
         return given().param("pageSize",pageSize)
