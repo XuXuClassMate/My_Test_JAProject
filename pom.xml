@@ -24,11 +24,6 @@
             <artifactId>rest-assured</artifactId>
             <version>5.2.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.66</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path -->
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
@@ -43,7 +38,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.6.5</version>
+            <version>5.8.9</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
