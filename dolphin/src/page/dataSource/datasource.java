@@ -26,6 +26,8 @@ import com.jayway.jsonpath.JsonPath;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
+import javax.naming.Name;
+
 
 public class datasource {
     public Response create(String projectName, String description){
@@ -40,7 +42,15 @@ public class datasource {
                 .header("language","zh_CN").body(body)
                 .when().post(dolphinConfig.getInstance().baseUrl+"/datasources/connect")
                 .then().log().all().statusCode(200).extract().response();
-
     }
-
+    public Response update(String Name, String description){
+        String JsonData = JsonPath.parse(this.getClass().getResourceAsStream("/data/database.json"))
+                .set("$.name", Name).set("$.note","test").jsonString();
+        return RestAssured.given()
+                .header("sessionId", dolphin.session())
+                .header("Accept","application/json, text/plain, */*")
+                .header("language","zh_CN").body(JsonData)
+                .when().post(dolphinConfig.getInstance().baseUrl+"/datasources/connect")
+                .then().log().all().statusCode(200).extract().response();
+    }
 }
