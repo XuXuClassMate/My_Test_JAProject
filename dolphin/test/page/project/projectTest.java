@@ -50,6 +50,8 @@ class projectTest {
     @Disabled
     void search(){
         project.search("").body();
+        String code=String.valueOf(project.search("").path("data.totalList[0].find{ it.name == 'test666' }.code"));
+        System.out.println("projectcode"+ code);
     }
 
     @Test

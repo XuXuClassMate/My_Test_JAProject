@@ -26,8 +26,6 @@ import com.jayway.jsonpath.JsonPath;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
-import javax.naming.Name;
-
 
 public class datasource {
     public Response create(String projectName, String description){
