@@ -20,24 +20,27 @@
 
 package page.project;
 
+import base.baseRequest;
 import base.dolphin;
 import base.dolphinConfig;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import static io.restassured.RestAssured.given;
 
 
-public class project {
+public class project extends base.baseRequest {
     public Response create(String projectName,String description){
-        return given()
-                .log().all()
-                .header("sessionId", dolphin.session())
+        Response response = baseRequest
                 .header("Accept","application/json, text/plain, */*")
                 .header("language","zh_CN")
                 .param("projectName",projectName)
                 .param("description",description)
                 .param("userName",dolphinConfig.getInstance().userName)
+                .contentType(ContentType.JSON)
                 .when().post(dolphinConfig.getInstance().baseUrl+"/projects")
-                .then().log().all().statusCode(201).extract().response();
+                .then().statusCode(201).extract().response();
+        reset();
+        return response;
     }
 
     public Response update(Long projectCode,String projectName,String description){
@@ -62,10 +65,10 @@ public class project {
     }
 
     public Response search(Integer pageSize, Integer pageNo, String searchName){
-        if (pageSize ==null | pageSize >10){
+        if (pageSize ==null | pageSize < 10){
             pageSize =10;
         }
-        if (pageNo ==null | pageNo >1) {
+        if (pageNo ==null | pageNo < 1) {
             pageNo =1;
         }
         return given().param("pageSize",pageSize)

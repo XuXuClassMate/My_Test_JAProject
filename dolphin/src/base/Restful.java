@@ -17,24 +17,29 @@
  * under the License.
  *
  */
-
+/**
+ * @ClassName:Restful
+ * @Auther: YooAo
+ * @Description:
+ * @Date: 2022/11/27 11:28
+ * @Version: v1.0
+ */
 package base;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
-public class dolphinConfig {
-    public String userName= "admin";
-    public String passWord = "dolphinscheduler123";
-    public String baseUrl = "http://www.xuxuclassmate.xyz:12345/dolphinscheduler";
+import java.util.HashMap;
 
-    private static  dolphinConfig dolphinConfig;
-    public static  dolphinConfig getInstance(){
-        if (dolphinConfig==null){
-            dolphinConfig=new dolphinConfig();
-        }
-        return dolphinConfig;
+import static io.restassured.RestAssured.given;
+
+public class Restful {
+    HashMap<String, Object> query= new HashMap<String, Object>();
+    public RequestSpecification baseRequest = given();
+    public Response send(){
+        baseRequest=given().log().all();
+        query.entrySet().forEach( entry->{
+            baseRequest.queryParam(entry.getKey(),entry.getValue());
+        });
+        return baseRequest.when().request("get","baidu.com");
     }
-
-    public static void load(String path){
-        //todo:read from yaml or json
-    }
-
 }

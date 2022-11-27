@@ -69,7 +69,7 @@ class projectTest {
         void update() {
             project.create("ApiTestCreateProject_update_init","ApiTestCreateProject_update_init")
                     .then().body("code", equalTo(0));
-            Long projectCode = project.search("ApiTestCreateProject")
+            Long projectCode = project.search("ApiTestCreateProject_update_init")
                     .then().log().all().body("data.totalList[0].name", equalTo("ApiTestCreateProject_update_init"))
                     .extract().path("data.totalList[0].code");
             project.update(projectCode,"ApiTestCreateProject_update_now","ApiTestCreateProject_update_now")

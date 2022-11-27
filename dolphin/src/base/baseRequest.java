@@ -17,24 +17,29 @@
  * under the License.
  *
  */
+/**
+ * @ClassName:Contact
+ * @Auther: YooAo
+ * @Description:
+ * @Date: 2022/11/27 11:25
+ * @Version: v1.0
+ */
 
 package base;
 
-public class dolphinConfig {
-    public String userName= "admin";
-    public String passWord = "dolphinscheduler123";
-    public String baseUrl = "http://www.xuxuclassmate.xyz:12345/dolphinscheduler";
+import io.restassured.http.ContentType;
 
-    private static  dolphinConfig dolphinConfig;
-    public static  dolphinConfig getInstance(){
-        if (dolphinConfig==null){
-            dolphinConfig=new dolphinConfig();
+import static io.restassured.RestAssured.given;
+
+public class baseRequest extends Restful{
+    public baseRequest(){
+        reset();
         }
-        return dolphinConfig;
+    public void reset(){
+        baseRequest
+                .log().all()
+                .header("sessionId", dolphin.session())
+                .contentType(ContentType.JSON)
+                .expect().log().all();
     }
-
-    public static void load(String path){
-        //todo:read from yaml or json
-    }
-
 }

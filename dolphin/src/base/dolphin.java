@@ -21,6 +21,7 @@
 package base;
 
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 
 import static org.hamcrest.Matchers.equalTo;
 
@@ -30,6 +31,7 @@ public class dolphin {
          session = RestAssured.given().log().all().
                 queryParam("userName",dolphinConfig.getInstance().userName)
                 .queryParam("userPassword",dolphinConfig.getInstance().passWord)
+                 .contentType(ContentType.JSON)
                 .post(dolphinConfig.getInstance().baseUrl+"/login")
                 .then().log().all().statusCode(200)
                 .body("code",  equalTo(0)).extract().path("data.sessionId");
