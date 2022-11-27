@@ -36,7 +36,7 @@ public class baseRequest extends Restful{
         reset();
         }
     public void reset(){
-        baseRequest
+        baseRequest.given()
                 .log().all()
                 .header("sessionId", dolphin.session())
                 .contentType(ContentType.JSON)

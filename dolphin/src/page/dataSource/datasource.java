@@ -20,14 +20,18 @@
 
 package page.dataSource;
 
+import base.baseRequest;
 import base.dolphin;
 import base.dolphinConfig;
+import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
+import java.util.HashMap;
 
-public class datasource {
+
+public class datasource extends base.baseRequest {
     public Response create(String projectName, String description){
         return null;
     }
@@ -38,6 +42,19 @@ public class datasource {
                 .header("sessionId", dolphin.session())
                 .header("Accept","application/json, text/plain, */*")
                 .header("language","zh_CN").body(body)
+                .when().post(dolphinConfig.getInstance().baseUrl+"/datasources/connect")
+                .then().log().all().statusCode(200).extract().response();
+    }
+    public Response connect(HashMap<String, Object> map){
+        reset();
+        DocumentContext documentContext=JsonPath.parse(this.getClass()
+                .getResourceAsStream("/data/database.json"));
+        map.entrySet().forEach(entry->{
+            documentContext.set(entry.getKey(),entry.getValue());
+        });
+        return baseRequest
+                .header("Accept","application/json, text/plain, */*")
+                .header("language","zh_CN").body(documentContext.jsonString())
                 .when().post(dolphinConfig.getInstance().baseUrl+"/datasources/connect")
                 .then().log().all().statusCode(200).extract().response();
     }
