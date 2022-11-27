@@ -2,6 +2,7 @@ package page.dataSource;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -26,20 +27,13 @@ class datasourceTest {
     void create() {
 
     }
-
-    @Test
-    void connet() {
-        datasource.connect("MySqlDataTest").then().body("code",equalTo(10037));
-    }
-
     @Test
     void connet_map(){
-        HashMap<String, Object> map=new HashMap<String, Object>(){{
-         put("type","MYSQL");
-         put("name","apiTestmysql");
-         put("userName","root");
-         put("passWord","root@123");
-        }};
+        HashMap<String, Object> map=new HashMap<>();
+        map.put("type","MYSQL");
+        map.put("name","apiTestmysql");
+        map.put("userName","root");
+        map.put("passWord","root@123");
         datasource.connect(map).then().body("code",equalTo(10037));
     }
 }

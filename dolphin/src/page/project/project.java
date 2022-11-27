@@ -20,77 +20,60 @@
 
 package page.project;
 
-import base.baseRequest;
 import base.dolphin;
-import base.dolphinConfig;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-import static base.dolphin.baseUrl;
-import static base.dolphin.userName;
-import static io.restassured.RestAssured.given;
 
-
-public class project extends base.baseRequest {
+public class project extends dolphin {
     public Response create(String projectName,String description){
+        api_init();
         Response response = baseRequest
-                .header("Accept","application/json, text/plain, */*")
-                .header("language","zh_CN")
                 .param("projectName",projectName)
                 .param("description",description)
                 .param("userName",userName)
-                .contentType(ContentType.JSON)
                 .when().post(baseUrl+"/projects")
                 .then().statusCode(201).extract().response();
-        api_init();
         return response;
     }
 
     public Response update(Long projectCode,String projectName,String description){
-        return given()
-                .log().all()
-                .header("sessionId", dolphin.session())
-                .header("Accept","application/json, text/plain, */*")
-                .header("language","zh_CN")
+        api_init();
+        return baseRequest
                 .param("projectName",projectName).param("description",description)
                 .param("userName",userName)
                 .when().put(baseUrl+"/projects/"+ projectCode)
-                .then().log().all().statusCode(200).extract().response();
+                .then().statusCode(200).extract().response();
     }
 
     public Response delete(Long projectCode){
-        return given().log().all()
-                .header("sessionId", dolphin.session())
-                .header("Accept","application/json, text/plain, */*")
-                .header("language","zh_CN")
+        api_init();
+        return baseRequest
                 .when().delete(baseUrl+"/projects/"+ projectCode)
-                .then().log().all().statusCode(200).extract().response();
+                .then().statusCode(200).extract().response();
     }
 
     public Response search(Integer pageSize, Integer pageNo, String searchName){
+        api_init();
         if (pageSize ==null | pageSize < 10){
             pageSize =10;
         }
         if (pageNo ==null | pageNo < 1) {
             pageNo =1;
         }
-        return given().param("pageSize",pageSize)
+        return baseRequest
+                .param("pageSize",pageSize)
                 .param("pageNo",pageNo)
                 .param("searchVal",searchName)
-                .header("sessionId", dolphin.session())
-                .header("Accept","application/json, text/plain, */*")
-                .header("language","zh_CN")
                 .when().get(baseUrl+"/projects")
-                .then().log().all().statusCode(200).extract().response();
+                .then().statusCode(200).extract().response();
     }
     public Response search(String searchName){
-        return given().param("pageSize",10)
+        api_init();
+        return baseRequest
+                .param("pageSize",10)
                 .param("pageNo",1)
                 .param("searchVal",searchName)
-                .header("sessionId", dolphin.session())
-                .header("Accept","application/json, text/plain, */*")
-                .header("language","zh_CN")
                 .when().get(baseUrl+"/projects")
-                .then().log().all().statusCode(200).extract().response();
+                .then().statusCode(200).extract().response();
     }
 }

@@ -27,37 +27,26 @@ import java.util.HashMap;
 import static base.dolphin.baseUrl;
 
 
-public class datasource extends base.baseRequest {
-    public Response create(String projectName, String description){
-        return null;
-    }
-    public Response connect(String Name){
-        String body = JsonPath.parse(this.getClass().getResourceAsStream("/data/database.json"))
-                .set("$.name",Name).jsonString();
-        return RestAssured.given()
-                .header("sessionId", dolphin.session())
-                .header("Accept","application/json, text/plain, */*")
-                .header("language","zh_CN").body(body)
-                .when().post(baseUrl+"/datasources/connect")
-                .then().log().all().statusCode(200).extract().response();
+public class datasource extends dolphin {
+    public Response create(HashMap<String,Object> map){
+        api_init();
+        String body = template("/data/database.json",map);
+        return baseRequest
+                .when().post(baseUrl+"/datasources")
+                .then().statusCode(201).extract().response();
     }
     public Response connect(HashMap<String, Object> map){
         api_init();
         String body = template("/data/database.json",map);
         return baseRequest
-                .header("Accept","application/json, text/plain, */*")
-                .header("language","zh_CN").body(body)
                 .when().post(baseUrl+"/datasources/connect")
-                .then().log().all().statusCode(200).extract().response();
+                .then().statusCode(200).extract().response();
     }
-    public Response update(String Name, String description){
-        String JsonData = JsonPath.parse(this.getClass().getResourceAsStream("/data/database.json"))
-                .set("$.name", Name).set("$.note","test").jsonString();
-        return RestAssured.given()
-                .header("sessionId", dolphin.session())
-                .header("Accept","application/json, text/plain, */*")
-                .header("language","zh_CN").body(JsonData)
-                .when().post(baseUrl+"/datasources/connect")
-                .then().log().all().statusCode(200).extract().response();
+    public Response update(int datasourceid,HashMap<String, Object> map){
+        api_init();
+        String body = template("/data/database.json",map);
+        return baseRequest.body(body)
+                .when().put(baseUrl+"/datasources/"+ datasourceid)
+                .then().statusCode(200).extract().response();
     }
 }

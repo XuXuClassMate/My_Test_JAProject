@@ -29,8 +29,6 @@ package base;
 
 import io.restassured.http.ContentType;
 
-import static io.restassured.RestAssured.given;
-
 public class baseRequest extends Restful{
     public baseRequest(){
         api_init();
@@ -39,7 +37,9 @@ public class baseRequest extends Restful{
         baseRequest.given()
                 .log().all()
                 .header("sessionId", dolphin.session())
-                .contentType(ContentType.JSON)
+                .header("Accept","application/json, text/plain, */*")
+                .header("language","zh_CN")
+                //.contentType(ContentType.JSON)
                 .expect().log().all();
     }
 }

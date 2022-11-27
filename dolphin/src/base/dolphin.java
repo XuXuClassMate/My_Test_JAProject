@@ -26,14 +26,15 @@ import io.restassured.http.ContentType;
 import static org.hamcrest.Matchers.equalTo;
 
 public class dolphin extends baseRequest {
-    private static String session = null;
+
     public static String baseUrl = null;
     public static String userName = null;
     public static String passWord = null;
+    private static String session = null;
     public static String logIn(){
          baseUrl = dolphinConfig.getInstance().baseUrl;
          userName = dolphinConfig.getInstance().userName;
-        passWord = dolphinConfig.getInstance().passWord;
+         passWord = dolphinConfig.getInstance().passWord;
          session = RestAssured.given().log().all().
                 queryParam("userName",userName)
                 .queryParam("userPassword",dolphinConfig.getInstance().passWord)
@@ -44,10 +45,10 @@ public class dolphin extends baseRequest {
         return session;
 
     }
-    public static String logIn(String baseUrl,String userName,String passWord){
-        baseUrl = baseUrl;
-        userName = userName;
-        passWord = passWord;
+    public static String logIn(String BaseUrl,String UserName,String PassWord){
+        baseUrl = BaseUrl;
+        userName = UserName;
+        passWord = PassWord;
         session = RestAssured.given().log().all().
                 queryParam("userName",userName)
                 .queryParam("userPassword",passWord)
@@ -57,6 +58,12 @@ public class dolphin extends baseRequest {
 
         return session;
 
+    }
+    public static String session(){
+        if (session== null){
+            session= logIn();
+        }
+        return session;
     }
 
 }
