@@ -19,16 +19,12 @@
  */
 
 package page.dataSource;
-
-import base.baseRequest;
 import base.dolphin;
-import base.dolphinConfig;
-import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-
 import java.util.HashMap;
+import static base.dolphin.baseUrl;
 
 
 public class datasource extends base.baseRequest {
@@ -42,20 +38,16 @@ public class datasource extends base.baseRequest {
                 .header("sessionId", dolphin.session())
                 .header("Accept","application/json, text/plain, */*")
                 .header("language","zh_CN").body(body)
-                .when().post(dolphinConfig.getInstance().baseUrl+"/datasources/connect")
+                .when().post(baseUrl+"/datasources/connect")
                 .then().log().all().statusCode(200).extract().response();
     }
     public Response connect(HashMap<String, Object> map){
-        reset();
-        DocumentContext documentContext=JsonPath.parse(this.getClass()
-                .getResourceAsStream("/data/database.json"));
-        map.entrySet().forEach(entry->{
-            documentContext.set(entry.getKey(),entry.getValue());
-        });
+        api_init();
+        String body = template("/data/database.json",map);
         return baseRequest
                 .header("Accept","application/json, text/plain, */*")
-                .header("language","zh_CN").body(documentContext.jsonString())
-                .when().post(dolphinConfig.getInstance().baseUrl+"/datasources/connect")
+                .header("language","zh_CN").body(body)
+                .when().post(baseUrl+"/datasources/connect")
                 .then().log().all().statusCode(200).extract().response();
     }
     public Response update(String Name, String description){
@@ -65,7 +57,7 @@ public class datasource extends base.baseRequest {
                 .header("sessionId", dolphin.session())
                 .header("Accept","application/json, text/plain, */*")
                 .header("language","zh_CN").body(JsonData)
-                .when().post(dolphinConfig.getInstance().baseUrl+"/datasources/connect")
+                .when().post(baseUrl+"/datasources/connect")
                 .then().log().all().statusCode(200).extract().response();
     }
 }

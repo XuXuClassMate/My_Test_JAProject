@@ -25,21 +25,29 @@ import io.restassured.http.ContentType;
 
 import static org.hamcrest.Matchers.equalTo;
 
-public class dolphin {
-    private static String session;
+public class dolphin extends baseRequest {
+    private static String session = null;
+    public static String baseUrl = null;
+    public static String userName = null;
+    public static String passWord = null;
     public static String logIn(){
+         baseUrl = dolphinConfig.getInstance().baseUrl;
+         userName = dolphinConfig.getInstance().userName;
+        passWord = dolphinConfig.getInstance().passWord;
          session = RestAssured.given().log().all().
-                queryParam("userName",dolphinConfig.getInstance().userName)
+                queryParam("userName",userName)
                 .queryParam("userPassword",dolphinConfig.getInstance().passWord)
                  .contentType(ContentType.JSON)
-                .post(dolphinConfig.getInstance().baseUrl+"/login")
+                .post(baseUrl+"/login")
                 .then().log().all().statusCode(200)
                 .body("code",  equalTo(0)).extract().path("data.sessionId");
-
         return session;
 
     }
-    public String logIn(String baseUrl,String userName,String passWord){
+    public static String logIn(String baseUrl,String userName,String passWord){
+        baseUrl = baseUrl;
+        userName = userName;
+        passWord = passWord;
         session = RestAssured.given().log().all().
                 queryParam("userName",userName)
                 .queryParam("userPassword",passWord)
@@ -49,12 +57,6 @@ public class dolphin {
 
         return session;
 
-    }
-    public static String session(){
-        if (session == null){
-            session = logIn();
-        }
-        return session;
     }
 
 }

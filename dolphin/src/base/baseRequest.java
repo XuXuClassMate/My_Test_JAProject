@@ -33,9 +33,9 @@ import static io.restassured.RestAssured.given;
 
 public class baseRequest extends Restful{
     public baseRequest(){
-        reset();
+        api_init();
         }
-    public void reset(){
+    public void api_init(){
         baseRequest.given()
                 .log().all()
                 .header("sessionId", dolphin.session())

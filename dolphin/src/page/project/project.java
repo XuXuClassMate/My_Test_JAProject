@@ -25,6 +25,9 @@ import base.dolphin;
 import base.dolphinConfig;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+
+import static base.dolphin.baseUrl;
+import static base.dolphin.userName;
 import static io.restassured.RestAssured.given;
 
 
@@ -35,11 +38,11 @@ public class project extends base.baseRequest {
                 .header("language","zh_CN")
                 .param("projectName",projectName)
                 .param("description",description)
-                .param("userName",dolphinConfig.getInstance().userName)
+                .param("userName",userName)
                 .contentType(ContentType.JSON)
-                .when().post(dolphinConfig.getInstance().baseUrl+"/projects")
+                .when().post(baseUrl+"/projects")
                 .then().statusCode(201).extract().response();
-        reset();
+        api_init();
         return response;
     }
 
@@ -50,8 +53,8 @@ public class project extends base.baseRequest {
                 .header("Accept","application/json, text/plain, */*")
                 .header("language","zh_CN")
                 .param("projectName",projectName).param("description",description)
-                .param("userName",dolphinConfig.getInstance().userName)
-                .when().put(dolphinConfig.getInstance().baseUrl+"/projects/"+ projectCode)
+                .param("userName",userName)
+                .when().put(baseUrl+"/projects/"+ projectCode)
                 .then().log().all().statusCode(200).extract().response();
     }
 
@@ -60,7 +63,7 @@ public class project extends base.baseRequest {
                 .header("sessionId", dolphin.session())
                 .header("Accept","application/json, text/plain, */*")
                 .header("language","zh_CN")
-                .when().delete(dolphinConfig.getInstance().baseUrl+"/projects/"+ projectCode)
+                .when().delete(baseUrl+"/projects/"+ projectCode)
                 .then().log().all().statusCode(200).extract().response();
     }
 
@@ -77,7 +80,7 @@ public class project extends base.baseRequest {
                 .header("sessionId", dolphin.session())
                 .header("Accept","application/json, text/plain, */*")
                 .header("language","zh_CN")
-                .when().get(dolphinConfig.getInstance().baseUrl+"/projects")
+                .when().get(baseUrl+"/projects")
                 .then().log().all().statusCode(200).extract().response();
     }
     public Response search(String searchName){
@@ -87,7 +90,7 @@ public class project extends base.baseRequest {
                 .header("sessionId", dolphin.session())
                 .header("Accept","application/json, text/plain, */*")
                 .header("language","zh_CN")
-                .when().get(dolphinConfig.getInstance().baseUrl+"/projects")
+                .when().get(baseUrl+"/projects")
                 .then().log().all().statusCode(200).extract().response();
     }
 }
