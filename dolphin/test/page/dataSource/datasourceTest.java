@@ -33,7 +33,7 @@ class datasourceTest {
         map.put("type","MYSQL");
         map.put("name","apiTestmysql");
         map.put("userName","root");
-        map.put("passWord","root@123");
+        map.put("password","root@123");
         datasource.connect(map).then().body("code",equalTo(10037));
     }
 }

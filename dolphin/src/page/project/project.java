@@ -19,61 +19,64 @@
  */
 
 package page.project;
-
 import base.dolphin;
 import io.restassured.response.Response;
 
 
 public class project extends dolphin {
     public Response create(String projectName,String description){
-        api_init();
-        Response response = baseRequest
+        Response response= baseRequest
                 .param("projectName",projectName)
                 .param("description",description)
                 .param("userName",userName)
                 .when().post(baseUrl+"/projects")
                 .then().statusCode(201).extract().response();
+        api_init();
         return response;
     }
 
     public Response update(Long projectCode,String projectName,String description){
-        api_init();
-        return baseRequest
+        Response response= baseRequest
                 .param("projectName",projectName).param("description",description)
                 .param("userName",userName)
                 .when().put(baseUrl+"/projects/"+ projectCode)
                 .then().statusCode(200).extract().response();
+        api_init();
+        return response;
     }
 
     public Response delete(Long projectCode){
-        api_init();
-        return baseRequest
+        Response response= baseRequest
                 .when().delete(baseUrl+"/projects/"+ projectCode)
                 .then().statusCode(200).extract().response();
+        api_init();
+        return response;
     }
 
     public Response search(Integer pageSize, Integer pageNo, String searchName){
-        api_init();
         if (pageSize ==null | pageSize < 10){
             pageSize =10;
         }
         if (pageNo ==null | pageNo < 1) {
             pageNo =1;
         }
-        return baseRequest
+        Response response= baseRequest
                 .param("pageSize",pageSize)
                 .param("pageNo",pageNo)
                 .param("searchVal",searchName)
                 .when().get(baseUrl+"/projects")
                 .then().statusCode(200).extract().response();
+        api_init();
+        return response;
     }
     public Response search(String searchName){
-        api_init();
-        return baseRequest
+        Response response= baseRequest
                 .param("pageSize",10)
                 .param("pageNo",1)
                 .param("searchVal",searchName)
                 .when().get(baseUrl+"/projects")
                 .then().statusCode(200).extract().response();
+        api_init();
+        return response;
     }
 }

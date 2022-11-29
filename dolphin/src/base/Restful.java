@@ -36,7 +36,8 @@ import static io.restassured.RestAssured.given;
 
 public class Restful {
     HashMap<String, Object> query= new HashMap<String, Object>();
-    public RequestSpecification baseRequest = given();
+    public static RequestSpecification baseRequest = given();
+
     public Response send(){
         baseRequest=given().log().all();
         query.entrySet().forEach( entry->{
@@ -46,10 +47,12 @@ public class Restful {
     }
 
     public static String template(String path, HashMap<String, Object> map){
-        DocumentContext documentContext= JsonPath.parse(Restful.class.getResourceAsStream(path));
+        DocumentContext documentContext= JsonPath.parse(path);
         map.entrySet().forEach(entry->{
             documentContext.set(entry.getKey(),entry.getValue());
         });
         return documentContext.jsonString();
     }
+
+
 }

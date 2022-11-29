@@ -20,33 +20,35 @@
 
 package page.dataSource;
 import base.dolphin;
-import com.jayway.jsonpath.JsonPath;
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import java.util.HashMap;
-import static base.dolphin.baseUrl;
 
 
 public class datasource extends dolphin {
     public Response create(HashMap<String,Object> map){
-        api_init();
         String body = template("/data/database.json",map);
-        return baseRequest
+        Response response = baseRequest.body(body)
                 .when().post(baseUrl+"/datasources")
                 .then().statusCode(201).extract().response();
+        api_init();
+        return response;
     }
     public Response connect(HashMap<String, Object> map){
-        api_init();
         String body = template("/data/database.json",map);
-        return baseRequest
+        Response response = baseRequest.body(body)
                 .when().post(baseUrl+"/datasources/connect")
                 .then().statusCode(200).extract().response();
+        api_init();
+        return response;
     }
     public Response update(int datasourceid,HashMap<String, Object> map){
-        api_init();
         String body = template("/data/database.json",map);
-        return baseRequest.body(body)
+        Response response = baseRequest.body(body)
                 .when().put(baseUrl+"/datasources/"+ datasourceid)
                 .then().statusCode(200).extract().response();
+        api_init();
+
+        return response;
+
     }
 }
