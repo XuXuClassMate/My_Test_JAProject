@@ -25,10 +25,9 @@ class datasourceTest {
 
     @Test
     void create() {
-
     }
     @Test
-    void connet_map(){
+    void connet(){
         HashMap<String, Object> map=new HashMap<>();
         map.put("type","MYSQL");
         map.put("name","apiTestmysql");
