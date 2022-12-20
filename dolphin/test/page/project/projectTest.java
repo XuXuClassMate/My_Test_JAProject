@@ -21,6 +21,9 @@
 package page.project;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 import static org.hamcrest.Matchers.equalTo;
 
 
@@ -54,13 +57,15 @@ class projectTest {
         System.out.println("projectcode"+ code);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings={"ApiTestCreateProject123","ApiTestCreateProject456","ApiTestCreateProject789"})
     @DisplayName("create project Testcase")
-    void create() {
-        project.create("ApiTestCreateProject","")
+    void create(String name) {
+        String projectname =name;
+        project.create(projectname,"")
                 .then().body("code", equalTo(0));
-        project.search("ApiTestCreateProject")
-                .then().body("data.totalList[0].name",equalTo("ApiTestCreateProject"));
+        project.search(projectname)
+                .then().body("data.totalList[0].name",equalTo(projectname));
     }
     @Nested
     @DisplayName("update projectName Testcase")
