@@ -45,10 +45,6 @@ class projectTest {
             project.delete(projectCode);
         }
     }
-
-
-
-
     @Test
     @Disabled
     void search(){
@@ -56,7 +52,6 @@ class projectTest {
         String code=String.valueOf(project.search("").path("data.totalList[0].find{ it.name == 'test666' }.code"));
         System.out.println("projectcode"+ code);
     }
-
     @ParameterizedTest
     @ValueSource(strings={"ApiTestCreateProject123","ApiTestCreateProject456","ApiTestCreateProject789"})
     @DisplayName("create project Testcase")
