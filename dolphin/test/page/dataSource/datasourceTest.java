@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -24,15 +25,22 @@ class datasourceTest {
     }
 
     @Test
-    void create() {
+    void create() throws IOException {
+        HashMap<String,Object> map=new HashMap<>();
+        map.put("type","MYSQL");
+        map.put("name","apiTestmysql");
+        map.put("userName","root");
+        map.put("password","root@123");
+        datasource.create(map).then().body("code",equalTo(10033));
     }
     @Test
-    void connet(){
+    void connet() throws IOException {
         HashMap<String, Object> map=new HashMap<>();
         map.put("type","MYSQL");
         map.put("name","apiTestmysql");
         map.put("userName","root");
         map.put("password","root@123");
-        datasource.connect(map).then().body("code",equalTo(10037));
+        map.put("database","xuxutestdb123");
+        datasource.connect(map).then().body("code",equalTo(10036));
     }
 }

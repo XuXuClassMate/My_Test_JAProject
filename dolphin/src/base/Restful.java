@@ -30,6 +30,11 @@ import com.jayway.jsonpath.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 import static io.restassured.RestAssured.given;
@@ -46,12 +51,14 @@ public class Restful {
         return baseRequest.when().request("get","baidu.com");
     }
 
-    public static String template(String path, HashMap<String, Object> map){
-        DocumentContext documentContext= JsonPath.parse(path);
+    public static String template(String pathfile, HashMap<String, Object> map) throws IOException {
+        Path path = Paths.get(pathfile);
+        String jsonString = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
+        DocumentContext document = JsonPath.parse(jsonString);
         map.entrySet().forEach(entry->{
-            documentContext.set(entry.getKey(),entry.getValue());
+            document.set(entry.getKey(),entry.getValue());
         });
-        return documentContext.jsonString();
+        return document.jsonString();
     }
 
 
