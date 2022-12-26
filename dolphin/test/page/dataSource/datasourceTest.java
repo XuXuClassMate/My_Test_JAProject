@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.HashMap;
-
 import static org.hamcrest.Matchers.equalTo;
 
 class datasourceTest {

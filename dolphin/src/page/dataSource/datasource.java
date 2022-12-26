@@ -21,31 +21,24 @@
 package page.dataSource;
 import base.dolphin;
 import io.restassured.response.Response;
+
 import java.io.IOException;
 import java.util.HashMap;
 
+
 public class datasource extends dolphin {
     public Response create(HashMap<String,Object> map) throws IOException {
-        String body = template("dolphin/resource/data/database.json",map);
+        String body = template("/data/database.json",map);
         Response response = baseRequest.body(body)
                 .when().post(baseUrl+"/datasources")
-                //this api http statuscode true is 201 ,error is 200
-                .then().statusCode(200).extract().response();
+                .then().statusCode(201).extract().response();
         api_init();
         return response;
     }
     public Response connect(HashMap<String, Object> map) throws IOException {
-        String body = template("dolphin/resource/data/database.json",map);
-        Response response = baseRequest.body(body)
-                .when().post(baseUrl+"/datasources/connect")
-                .then().statusCode(200).extract().response();
-        api_init();
-        return response;
-    }
-    public Response update(int datasourceid,HashMap<String, Object> map) throws IOException {
         String body = template("/data/database.json",map);
         Response response = baseRequest.body(body)
-                .when().put(baseUrl+"/datasources/"+ datasourceid)
+                .when().post(baseUrl+"/datasources/connect")
                 .then().statusCode(200).extract().response();
         api_init();
         return response;

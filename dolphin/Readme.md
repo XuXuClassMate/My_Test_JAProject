@@ -7,5 +7,5 @@ The test items is Dolphin
 The tools I use are
 
 ```shell
-Java + Rest-Assured + Allure2
+Java + Junit +Rest-Assured + Allure2
 ```
