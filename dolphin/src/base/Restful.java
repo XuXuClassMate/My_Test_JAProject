@@ -22,6 +22,10 @@ import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
