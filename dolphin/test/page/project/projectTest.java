@@ -20,12 +20,13 @@
 
 package page.project;
 
+import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import static org.hamcrest.Matchers.equalTo;
 
-
+@Feature("project Testcase")
 class projectTest {
     static project project;
 
@@ -37,6 +38,7 @@ class projectTest {
     }
 
     @AfterAll
+    @Story("all datasource delete")
     static void setDown(){
         int total = project.search("").then().log().all().extract().path("data.total");
         for (int i = 0; i < total; i++) {
@@ -46,6 +48,8 @@ class projectTest {
     }
     @Test
     @Disabled
+    @Severity(SeverityLevel.MINOR)
+    @Story("search Testcase")
     void search(){
         project.search("").body();
         String code=String.valueOf(project.search("").path("data.totalList[0].find{ it.name == 'test666' }.code"));
@@ -54,30 +58,37 @@ class projectTest {
     @ParameterizedTest
     @ValueSource(strings={"ApiTestCreateProject123","ApiTestCreateProject456","ApiTestCreateProject789"})
     @DisplayName("create project Testcase")
+    @Story("Create project {name}")
+    @Severity(SeverityLevel.BLOCKER)
     void create(String name) {
-        String projectname =name;
-        project.create(projectname,"")
+        project.create(name,"")
                 .then().body("code", equalTo(0));
-        project.search(projectname)
-                .then().body("data.totalList[0].name",equalTo(projectname));
+        project.search(name)
+                .then().body("data.totalList[0].name",equalTo(name));
     }
     @Nested
     @DisplayName("update projectName Testcase")
+    @Severity(SeverityLevel.BLOCKER)
     class update_delete{
         @Test
         void update() {
+            Allure.step("Create 'ApiTestCreateProject_update_init' project");
             project.create("ApiTestCreateProject_update_init","ApiTestCreateProject_update_init")
                     .then().body("code", equalTo(0));
+            Allure.step("Get 'ApiTestCreateProject_update_init' project code");
             Long projectCode = project.search("ApiTestCreateProject_update_init")
                     .then().log().all().body("data.totalList[0].name", equalTo("ApiTestCreateProject_update_init"))
                     .extract().path("data.totalList[0].code");
+            Allure.step("Update project name 'ApiTestCreateProject_update_init' -> 'ApiTestCreateProject_update_now'");
             project.update(projectCode,"ApiTestCreateProject_update_now","ApiTestCreateProject_update_now")
                     .then().body("code", equalTo(0));
+            Allure.step("Assert correct modification of project name ");
             project.search("ApiTestCreateProject_update_now")
                     .then().body("data.totalList[0].name",equalTo("ApiTestCreateProject_update_now"));
         }
         @Nested
         @DisplayName("delete project")
+        @Severity(SeverityLevel.BLOCKER)
         class delete{
             @Test
             void delete(){

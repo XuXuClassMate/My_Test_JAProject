@@ -33,7 +33,7 @@
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
-            <version>3.6.0</version>
+            <version>3.6.1</version>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -53,7 +53,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.67_noneautotype2</version>
+            <version>2.0.21</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -67,11 +67,11 @@
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.9.0</version>
         </dependency>
-        <dependency>
-            <groupId>org.xuxuclassmate</groupId>
-            <artifactId>My_Test_JAProject</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.xuxuclassmate</groupId>-->
+<!--            <artifactId>My_Test_JAProject</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
@@ -79,8 +79,14 @@
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-maven</artifactId>
-            <version>2.12.0</version>
+            <artifactId>allure-rest-assured</artifactId>
+            <version>2.20.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M7</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -96,11 +102,18 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>io.qameta.allure</groupId>
-                <artifactId>allure-maven</artifactId>
-                <version>2.12.0</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M7</version>
                 <configuration>
-                    <reportVersion>2.14.0</reportVersion>
+                <includes>
+                    <include>**/*TestCase.java</include>
+                </includes>
+<!--                <groupId>io.qameta.allure</groupId>-->
+<!--                <artifactId>allure-rest-assured</artifactId>-->
+<!--                <version>2.20.1</version>-->
+<!--                <configuration>-->
+<!--                    <reportVersion>2.14.0</reportVersion>-->
                 </configuration>
             </plugin>
         </plugins>

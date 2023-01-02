@@ -17,13 +17,6 @@
  * under the License.
  *
  */
-/**
- * @ClassName:Contact
- * @Auther: YooAo
- * @Description:
- * @Date: 2022/11/27 11:25
- * @Version: v1.0
- */
 
 package base;
 
