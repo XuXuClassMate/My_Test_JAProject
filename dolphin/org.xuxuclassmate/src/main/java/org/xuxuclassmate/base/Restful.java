@@ -17,7 +17,7 @@
  * under the License.
  *
  */
-package base;
+package org.xuxuclassmate.base;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import io.restassured.response.Response;

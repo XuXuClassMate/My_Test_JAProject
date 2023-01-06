@@ -18,25 +18,25 @@
  *
  */
 
-package page.dataSource;
-import base.dolphin;
-import io.restassured.response.Response;
+package org.xuxuclassmate.page.dataSource;
 
+import io.restassured.response.Response;
+import org.xuxuclassmate.base.dolphin;
 import java.io.IOException;
 import java.util.HashMap;
 
 
 public class datasource extends dolphin {
     public Response create(HashMap<String,Object> map) throws IOException {
-        String body = template("/data/database.json",map);
+        String body = template("src/main/resources/data/database.json",map);
         Response response = baseRequest.body(body)
                 .when().post(baseUrl+"/datasources")
-                .then().statusCode(201).extract().response();
+                .then().statusCode(200).extract().response();
         api_init();
         return response;
     }
     public Response connect(HashMap<String, Object> map) throws IOException {
-        String body = template("/data/database.json",map);
+        String body = template("src/main/resources/data/database.json",map);
         Response response = baseRequest.body(body)
                 .when().post(baseUrl+"/datasources/connect")
                 .then().statusCode(200).extract().response();

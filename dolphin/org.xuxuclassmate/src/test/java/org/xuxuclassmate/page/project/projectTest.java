@@ -18,7 +18,7 @@
  *
  */
 
-package page.project;
+package org.xuxuclassmate.page.project;
 
 import io.qameta.allure.*;
 import org.junit.jupiter.api.*;

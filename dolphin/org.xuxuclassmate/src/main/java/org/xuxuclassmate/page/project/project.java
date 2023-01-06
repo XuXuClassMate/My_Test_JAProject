@@ -18,9 +18,10 @@
  *
  */
 
-package page.project;
-import base.dolphin;
+package org.xuxuclassmate.page.project;
+
 import io.restassured.response.Response;
+import org.xuxuclassmate.base.dolphin;
 
 public class project extends dolphin {
     public Response create(String projectName,String description){
@@ -31,6 +32,7 @@ public class project extends dolphin {
                 .when().post(baseUrl+"/projects")
                 .then().statusCode(201).extract().response();
         api_init();
+
         return response;
     }
 

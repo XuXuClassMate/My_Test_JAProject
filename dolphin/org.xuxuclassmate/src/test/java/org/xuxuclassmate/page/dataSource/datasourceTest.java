@@ -1,4 +1,4 @@
-package page.dataSource;
+package org.xuxuclassmate.page.dataSource;
 
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Description;

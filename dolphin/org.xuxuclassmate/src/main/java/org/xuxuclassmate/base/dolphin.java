@@ -18,7 +18,7 @@
  *
  */
 
-package base;
+package org.xuxuclassmate.base;
 
 import static org.hamcrest.Matchers.equalTo;
 

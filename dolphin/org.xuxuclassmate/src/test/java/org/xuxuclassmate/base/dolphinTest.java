@@ -1,4 +1,4 @@
-package base;
+package org.xuxuclassmate.base;
 
 import io.qameta.allure.*;
 import org.junit.jupiter.api.BeforeEach;

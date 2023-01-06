@@ -18,23 +18,22 @@
  *
  */
 
-package base;
+package org.xuxuclassmate.base;
 
-public class dolphinConfig {
-    public String userName= "admin";
-    public String passWord = "dolphinscheduler123";
-    public String baseUrl = "http://150.158.189.11:12345/dolphinscheduler";
+import static io.restassured.RestAssured.given;
 
-    private static  dolphinConfig dolphinConfig;
-    public static  dolphinConfig getInstance(){
-        if (dolphinConfig==null){
-            dolphinConfig=new dolphinConfig();
-        }
-        return dolphinConfig;
+public class baseRequest extends Restful{
+    public baseRequest() {
+        api_init();
+   }
+    public void api_init(){
+         baseRequest = given()
+                .log().all()
+                .header("sessionId", dolphin.session())
+                .header("Accept","application/json, text/plain, */*")
+                .header("language","zh_CN")
+                .header("Content-Type","application/x-www-form-urlencoded")
+                //.contentType(ContentType.JSON)
+         ;
     }
-
-    public static void load(String path){
-        //todo:read from yaml or json
-    }
-
 }
