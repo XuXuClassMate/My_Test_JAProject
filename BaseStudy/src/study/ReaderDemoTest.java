@@ -19,7 +19,10 @@
  */
 
 package study;
-import org.junit.jupiter.api.Test;
+
+
+
+import org.testng.annotations.Test;
 
 import java.io.FileReader;
 import java.io.FileWriter;
