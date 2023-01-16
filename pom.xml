@@ -101,12 +101,6 @@
             <version>5.9.2</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
-            <version>5.9.2</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
