@@ -18,9 +18,9 @@ class dolphinloginTest {
 
     @Test
     @Severity(SeverityLevel.BLOCKER)
-    @Link(name="login url", url = "http://150.158.189.11:12345/dolphinscheduler")
-    @Links({@Link(name="admin url", url = "http://150.158.189.11"),
-            @Link(name="login url", url = "http://150.158.189.11:12345/dolphinscheduler")})
+    @Link(name="login url", url = "http://xuxuclassmate.cn:12345/dolphinscheduler")
+    @Links({@Link(name="admin url", url = "https://xuxuclassmate.cn"),
+            @Link(name="login url", url = "http://xuxuclassmate.cn:12345/dolphinscheduler")})
     @Description("login Testcase，assert session Is it empty")
     void logIn() {
         String sessionId = dolphin.logIn();
