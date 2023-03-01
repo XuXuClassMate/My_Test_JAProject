@@ -6,9 +6,9 @@ The test items is Dolphin
 
 The tools I use are
 
-```shell
-Java + Junit +Rest-Assured + Allure2
-```
+
+# Java + Junit +Rest-Assured + Allure2
+
 ### 1、run test
 ```shell
 mvn clean test
@@ -18,7 +18,9 @@ mvn clean test
 
 ### 2、run Allure reports server
 ```shell
+
 allure serve target/surefire-reports
+
 ```
 ![img_2.png](.readme/allure1.png)
 

@@ -18,23 +18,17 @@
  *
  */
 
-package org.xuxuclassmate.base;
+public class githubconfig {
+    public  String ApiVersion = "2022-11-28";
+    public String Accept="application/vnd.github+json";
+    public String Token = "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";
+    public String BaseUrl = "https://api.github.com/repos/WhaleOps/WhaleScheduler";
 
-import static io.restassured.RestAssured.given;
-
-public class baseRequest extends Restful{
-
-    public baseRequest() {
-        api_init();
-   }
-    public void api_init(){
-         baseRequest = given()
-                .log().all()
-                .header("sessionId", dolphin.session())
-                .header("Accept","application/json, text/plain, */*")
-                .header("language","zh_CN")
-                .header("Content-Type","application/x-www-form-urlencoded")
-                //.contentType(ContentType.JSON)
-         ;
+    private static githubconfig githubconfig;
+    public static  githubconfig getInstance(){
+        if (githubconfig==null){
+         githubconfig=new githubconfig();
     }
+        return githubconfig;
+   }
 }

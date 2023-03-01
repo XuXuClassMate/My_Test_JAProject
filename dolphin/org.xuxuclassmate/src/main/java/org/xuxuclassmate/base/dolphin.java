@@ -40,6 +40,7 @@ public class dolphin extends baseRequest {
                  .body("code",  equalTo(0)).extract().path("data.sessionId");
          return sessionId;
     }
+
     public static String session(){
         if (sessionId== null){
             sessionId= logIn();
