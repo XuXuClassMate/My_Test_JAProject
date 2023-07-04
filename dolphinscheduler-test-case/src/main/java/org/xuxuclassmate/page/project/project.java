@@ -23,6 +23,8 @@ package org.xuxuclassmate.page.project;
 import io.restassured.response.Response;
 import org.xuxuclassmate.base.dolphin;
 
+import static org.hamcrest.Matchers.equalTo;
+
 public class project extends dolphin {
     public Response create(String projectName,String description){
         Response response= baseRequest
@@ -32,7 +34,6 @@ public class project extends dolphin {
                 .when().post(baseUrl+"/projects")
                 .then().statusCode(201).extract().response();
         api_init();
-
         return response;
     }
 

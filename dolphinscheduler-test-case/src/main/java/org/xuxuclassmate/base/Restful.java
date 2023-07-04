@@ -42,7 +42,7 @@ public class Restful {
         return baseRequest.when().request("get","baidu.com");
     }
 
-    public static String template(String pathfile, HashMap<String, Object> map) throws IOException {
+    public static String templateJson(String pathfile, HashMap<String, Object> map) throws IOException {
         Path path = Paths.get(pathfile);
         String jsonString = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
         DocumentContext document = JsonPath.parse(jsonString);
@@ -51,6 +51,19 @@ public class Restful {
         });
         return document.jsonString();
     }
+
+    public static String templateFrom(String pathfile, String key) throws IOException {
+        Path path = Paths.get(pathfile);
+        DocumentContext context = JsonPath.parse(path);
+//        String fromString = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
+//        DocumentContext document = JsonPath.parse(fromString);
+//        map.entrySet().forEach(entry->{
+//            document.set(entry.getKey(),entry.getValue());
+//        });
+        return context.read("$."+ key).toString();
+    }
+
+
 
 
 }

@@ -18,29 +18,24 @@
  *
  */
 
-package org.xuxuclassmate.page.dataSource;
+package org.xuxuclassmate.page.security;
 
 import io.restassured.response.Response;
 import org.xuxuclassmate.base.dolphin;
 import java.io.IOException;
-import java.util.HashMap;
+
+public class tenant extends dolphin {
+    public static Integer create(String TenantName, String description) throws IOException {
+        Response response= baseRequest
+                .param("tenantCode",TenantName)
+                .param("queueId",1)
+                .param("description",description)
+                .when().post(baseUrl+"/tenants");
+        api_assert(response, 201);
+        api_init();
+        return (Integer) api_path(response,"data.id");
+    }
 
 
-public class datasource extends dolphin {
-    public Response create(HashMap<String,Object> map) throws IOException {
-        String body = templateJson("src/main/resources/data/database.json",map);
-        Response response = baseRequest.body(body)
-                .when().post(baseUrl+"/datasources")
-                .then().statusCode(200).extract().response();
-        api_init();
-        return response;
-    }
-    public Response connect(HashMap<String, Object> map) throws IOException {
-        String body = templateJson("src/main/resources/data/database.json",map);
-        Response response = baseRequest.body(body)
-                .when().post(baseUrl+"/datasources/connect")
-                .then().statusCode(200).extract().response();
-        api_init();
-        return response;
-    }
+
 }
