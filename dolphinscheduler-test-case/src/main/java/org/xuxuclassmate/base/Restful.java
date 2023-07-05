@@ -55,11 +55,6 @@ public class Restful {
     public static String templateFrom(String pathfile, String key) throws IOException {
         Path path = Paths.get(pathfile);
         DocumentContext context = JsonPath.parse(path);
-//        String fromString = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
-//        DocumentContext document = JsonPath.parse(fromString);
-//        map.entrySet().forEach(entry->{
-//            document.set(entry.getKey(),entry.getValue());
-//        });
         return context.read("$."+ key).toString();
     }
 

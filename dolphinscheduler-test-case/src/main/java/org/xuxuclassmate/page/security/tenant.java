@@ -22,20 +22,16 @@ package org.xuxuclassmate.page.security;
 
 import io.restassured.response.Response;
 import org.xuxuclassmate.base.dolphin;
-import java.io.IOException;
 
 public class tenant extends dolphin {
-    public static Integer create(String TenantName, String description) throws IOException {
-        Response response= baseRequest
-                .param("tenantCode",TenantName)
-                .param("queueId",1)
-                .param("description",description)
-                .when().post(baseUrl+"/tenants");
+    public static Integer create(String TenantName, String description) {
+        Response response = baseRequest
+                .param("tenantCode", TenantName)
+                .param("queueId", 1)
+                .param("description", description)
+                .when().post(baseUrl + "/tenants");
         api_assert(response);
         api_init();
-        return (Integer) api_path(response,"data.id");
+        return (Integer) api_path(response, "data.id");
     }
-
-
-
 }
