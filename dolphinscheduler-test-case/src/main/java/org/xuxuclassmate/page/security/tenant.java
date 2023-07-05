@@ -31,7 +31,7 @@ public class tenant extends dolphin {
                 .param("queueId",1)
                 .param("description",description)
                 .when().post(baseUrl+"/tenants");
-        api_assert(response, 201);
+        api_assert(response);
         api_init();
         return (Integer) api_path(response,"data.id");
     }
