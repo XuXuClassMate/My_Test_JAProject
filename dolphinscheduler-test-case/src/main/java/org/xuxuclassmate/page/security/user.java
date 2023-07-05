@@ -20,5 +20,46 @@
 
 package org.xuxuclassmate.page.security;
 
-public class user {
+import io.restassured.response.Response;
+import org.xuxuclassmate.base.dolphin;
+
+public class user extends dolphin {
+    public static Integer create(String userName, String userPassword,Integer tenantId,String email,String queue,String phone) {
+        /**
+         * Phone : Not required
+         * state : 0 close , 1 open
+         */
+        Response response = baseRequest
+                .param("userName", userName)
+                .param("userPassword", userPassword)
+                .param("tenantId", tenantId)
+                .param("email", email)
+                .param("queue", queue)
+                .param("phone", phone)
+                .param("state", 1)
+                .when().post(baseUrl + "/users/create");
+        api_assert(response);
+        api_init();
+        return (Integer) api_path(response, "data.id");
+    }
+
+//    public static Integer create(String userName, String userPassword,Integer tenantId,String email,String queue,String phone,String state) {
+//        /**
+//         * Phone : Not required
+//         * state : 0 close , 1 open
+//         */
+//        Response response = baseRequest
+//                .param("userName", userName)
+//                .param("userPassword", userPassword)
+//                .param("tenantId", tenantId)
+//                .param("email", email)
+//                .param("queue", queue)
+//                .param("phone", phone)
+//                .param("state", state)
+//                .when().post(baseUrl + "/users/create");
+//        api_assert(response);
+//        api_init();
+//        return (Integer) api_path(response, "data.id");
+//    }
+
 }

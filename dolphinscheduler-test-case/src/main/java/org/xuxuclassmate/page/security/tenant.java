@@ -24,7 +24,7 @@ import io.restassured.response.Response;
 import org.xuxuclassmate.base.dolphin;
 
 public class tenant extends dolphin {
-    public static Integer create(String TenantName, String description) {
+    public Integer create(String TenantName, String description) {
         Response response = baseRequest
                 .param("tenantCode", TenantName)
                 .param("queueId", 1)
@@ -34,4 +34,36 @@ public class tenant extends dolphin {
         api_init();
         return (Integer) api_path(response, "data.id");
     }
+
+    public Response update(String TenantName, String description, Integer tenantId) {
+        Response response = baseRequest
+                .param("tenantCode", TenantName)
+                .param("queueId", 1)
+                .param("description", description)
+                .param("id", tenantId)
+                .when().put(baseUrl + "/tenants/" + tenantId);
+        api_assert(response);
+        api_init();
+        return response;
+    }
+
+    public Response search(String searchVal) {
+        Response response = baseRequest
+                .param("pageSize", 10)
+                .param("pageNo", 1)
+                .param("searchVal", searchVal)
+                .when().get(baseUrl + "/tenants");
+        api_assert(response);
+        api_init();
+        return response;
+    }
+
+    public Response delete(Integer tenantid) {
+        Response response = baseRequest
+                .when().delete(baseUrl + "/tenants/"+tenantid);
+        api_assert(response);
+        api_init();
+        return response;
+    }
+
 }

@@ -26,31 +26,32 @@ import org.xuxuclassmate.base.dolphin;
 import static org.hamcrest.Matchers.equalTo;
 
 public class project extends dolphin {
-    public Response create(String projectName,String description){
+    public Long create(String projectName,String description){
         Response response= baseRequest
                 .param("projectName",projectName)
                 .param("description",description)
                 .param("userName",userName)
-                .when().post(baseUrl+"/projects")
-                .then().statusCode(201).extract().response();
+                .when().post(baseUrl+"/projects");
+        api_assert(response);
         api_init();
-        return response;
+        return (Long) api_path(response, "data.code");
+
     }
 
     public Response update(Long projectCode,String projectName,String description){
         Response response= baseRequest
                 .param("projectName",projectName).param("description",description)
                 .param("userName",userName)
-                .when().put(baseUrl+"/projects/"+ projectCode)
-                .then().statusCode(200).extract().response();
+                .when().put(baseUrl+"/projects/"+ projectCode);
+        api_assert(response);
         api_init();
         return response;
     }
 
     public Response delete(Long projectCode){
         Response response= baseRequest
-                .when().delete(baseUrl+"/projects/"+ projectCode)
-                .then().statusCode(200).extract().response();
+                .when().delete(baseUrl+"/projects/"+ projectCode);
+        api_assert(response);
         api_init();
         return response;
     }
@@ -66,18 +67,19 @@ public class project extends dolphin {
                 .param("pageSize",pageSize)
                 .param("pageNo",pageNo)
                 .param("searchVal",searchName)
-                .when().get(baseUrl+"/projects")
-                .then().statusCode(200).extract().response();
+                .when().get(baseUrl+"/projects");
+        api_assert(response);
         api_init();
         return response;
+
     }
     public Response search(String searchName){
         Response response= baseRequest
                 .param("pageSize",10)
                 .param("pageNo",1)
                 .param("searchVal",searchName)
-                .when().get(baseUrl+"/projects")
-                .then().statusCode(200).extract().response();
+                .when().get(baseUrl+"/projects");
+        api_assert(response);
         api_init();
         return response;
     }
