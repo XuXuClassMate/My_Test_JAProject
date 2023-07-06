@@ -24,7 +24,7 @@ import io.restassured.response.Response;
 import org.xuxuclassmate.base.dolphin;
 
 public class user extends dolphin {
-    public static Integer create(String userName, String userPassword,Integer tenantId,String email,String queue,String phone) {
+    public Integer create(String userName, String userPassword, Integer tenantId, String email, String phone) {
         /**
          * Phone : Not required
          * state : 0 close , 1 open
@@ -34,7 +34,7 @@ public class user extends dolphin {
                 .param("userPassword", userPassword)
                 .param("tenantId", tenantId)
                 .param("email", email)
-                .param("queue", queue)
+                .param("queue", "default")
                 .param("phone", phone)
                 .param("state", 1)
                 .when().post(baseUrl + "/users/create");
@@ -43,23 +43,45 @@ public class user extends dolphin {
         return (Integer) api_path(response, "data.id");
     }
 
-//    public static Integer create(String userName, String userPassword,Integer tenantId,String email,String queue,String phone,String state) {
-//        /**
-//         * Phone : Not required
-//         * state : 0 close , 1 open
-//         */
-//        Response response = baseRequest
-//                .param("userName", userName)
-//                .param("userPassword", userPassword)
-//                .param("tenantId", tenantId)
-//                .param("email", email)
-//                .param("queue", queue)
-//                .param("phone", phone)
-//                .param("state", state)
-//                .when().post(baseUrl + "/users/create");
-//        api_assert(response);
-//        api_init();
-//        return (Integer) api_path(response, "data.id");
-//    }
+    public Response update(Integer id, String userName, Integer tenantId, String email, String phone) {
+        /**
+         * Phone : Not required
+         * state : 0 close , 1 open
+         * userPassword : default
+         */
+        Response response = baseRequest
+                .param("id", id)
+                .param("userName", userName)
+                .param("tenantId", tenantId)
+                .param("email", email)
+                .param("queue", "default")
+                .param("phone", phone)
+                .param("state", 1)
+                .param("userPassword", "")
+                .when().post(baseUrl + "/users/update");
+        api_assert(response);
+        api_init();
+        return response;
+    }
+
+    public Integer search(String searchVal) {
+        Response response = baseRequest
+                .param("pageNo", 1)
+                .param("pageSize", 10)
+                .param("searchVal", searchVal)
+                .when().get(baseUrl + "/users/list-paging");
+        api_assert(response);
+        api_init();
+        return (Integer) api_path(response, "data.totalList[0].id");
+    }
+
+    public Response delete(Integer id) {
+        Response response = baseRequest
+                .param("id", id)
+                .when().post(baseUrl + "/users/delete");
+        api_assert(response);
+        api_init();
+        return response;
+    }
 
 }
