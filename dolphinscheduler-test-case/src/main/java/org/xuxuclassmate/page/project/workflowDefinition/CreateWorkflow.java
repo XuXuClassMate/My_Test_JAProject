@@ -21,9 +21,9 @@
 package org.xuxuclassmate.page.project.workflowDefinition;
 
 import io.restassured.response.Response;
-import org.xuxuclassmate.base.dolphin;
+import org.xuxuclassmate.page.project.project;
 
-public class CreateWorkflow extends dolphin {
+public class CreateWorkflow extends project {
     public Long createShell(Long projectCode){
         Response response= baseRequest
                 .param("taskDefinitionJson","[{\"id\":26,\"code\":10082172833504,\"name\":\"shell\",\"version\":1,\"description\":\"\",\"projectCode\":9684697677792,\"userId\":1,\"taskType\":\"SHELL\",\"taskParams\":{\"localParams\":[],\"rawScript\":\"date\",\"resourceList\":[]},\"taskParamList\":[],\"taskParamMap\":null,\"flag\":\"YES\",\"taskPriority\":\"MEDIUM\",\"userName\":null,\"projectName\":null,\"workerGroup\":\"default\",\"environmentCode\":-1,\"failRetryTimes\":0,\"failRetryInterval\":1,\"timeoutFlag\":\"CLOSE\",\"timeoutNotifyStrategy\":null,\"timeout\":0,\"delayTime\":0,\"resourceIds\":\"\",\"createTime\":\"2023-07-01 15:43:46\",\"updateTime\":\"2023-07-01 15:43:46\",\"modifyBy\":null,\"taskGroupId\":0,\"taskGroupPriority\":0,\"operator\":1,\"operateTime\":\"2023-07-01 15:43:46\",\"dependence\":\"\"}]")
