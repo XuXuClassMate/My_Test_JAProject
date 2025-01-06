@@ -23,7 +23,7 @@ package org.xuxuclassmate.base;
 public class dolphinConfig {
     public String userName= "admin";
     public String passWord = "dolphinscheduler123";
-    public String baseUrl = "http://xuxuclassmate.cn:12345/dolphinscheduler";
+    public String baseUrl = "http://demo.whaleops.com:12345/dolphinscheduler";
 
     private static  dolphinConfig dolphinConfig;
     public static  dolphinConfig getInstance(){
