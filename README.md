@@ -1,5 +1,5 @@
 # My_Test_JAProject
- 我的测试项目JAVA版
+我的测试项目JAVA版
 
 [学习地址](./Introductory_learn/src/study)
 
@@ -12,3 +12,12 @@
 
 - [UI界面预览](https://xuxuclassmate.github.io/My_Test_JAProject)
 
+## 构建
+
+根目录 `pom.xml` 是 Maven 聚合工程，语言级别是 Java 8，当前纳入构建的模块是 `dolphinscheduler-test-case`。
+
+```bash
+mvn -pl dolphinscheduler-test-case test
+```
+
+这个模块里的接口测试会访问外部服务。本机没有对应环境时，测试失败不代表工程无法编译。计算器示例不走这条 Maven 构建，按上面的脚本直接运行附带的 jar。
